@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nan_graph"
+    app:startDestination="@id/fragmentMyContacts">
+
+    <fragment
+        android:id="@+id/fragmentMyContacts"
+        android:name="shpp.maslak.task3.ui.fragments.myContact.FragmentMyContacts"
+        android:label="fragment_my_contacts"
+        tools:layout="@layout/fragment_my_contacts" >
+        <action
+            android:id="@+id/action_fragmentMyContacts_to_fragmentContactDetail"
+            app:destination="@id/fragmentContactDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentContactDetail"
+        android:name="shpp.maslak.task3.ui.fragments.contactDetail.FragmentContactDetail"
+        android:label="FragmentContactDetail" />
+</navigation>

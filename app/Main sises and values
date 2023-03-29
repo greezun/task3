@@ -1,0 +1,27 @@
+Colors:
+- white  - #FAFAFA
+- blue  - #242235
+- orange  - #FB5E06
+- gray text  - #18181F
+- gray text 2  - #B2B2B3
+
+Text size:
+- headlineSmall - 24sp
+- titleMedium   - 18sp
+- titleSmall -  14sp
+- labelMedium - 12sp
+
+Avatars size:
+- main  - 113dp
+- contacts list  - 50dp
+
+Button size:
+- social networks  - 60dp
+- main button height -  55dp
+- secondary button height - 40dp
+
+
+Margin size:
+- marginMin - 8dp
+- marginMid - 16dp
+- marginMax - 146dp

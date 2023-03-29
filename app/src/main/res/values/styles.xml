@@ -1,0 +1,31 @@
+<resources>
+
+<!--    Text styles-->
+    <style name="Text">
+        <item name="android:fontFamily">@font/open_sans_font_family</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    
+    <style name="Text.PrimaryLight">
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="Text.PrimaryDark">
+        <item name="android:textColor">?attr/colorOnSecondary</item>
+    </style>
+
+    <style name="Text.Secondary">
+        <item name="android:textColor">@color/grayText2</item>
+    </style>
+
+
+<!--    Button style-->
+
+    <style name="MainButtonStyle">
+        <item name="android:layout_height">@dimen/mainButtonHeight</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:background">?attr/mainButtonColor</item>
+    </style>
+
+</resources>

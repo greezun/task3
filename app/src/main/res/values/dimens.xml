@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text size-->
+    <dimen name="headlineSmall">24sp</dimen>
+    <dimen name="titleMedium">18sp</dimen>
+    <dimen name="titleSmall">14sp</dimen>
+    <dimen name="labelMedium">12sp</dimen>
+
+    <!--  Avatars size  -->
+    <dimen name="mainAvatarSize">113dp</dimen>
+    <dimen name="secondaryAvatarSize">50dp</dimen>
+    <dimen name="main_avatar_radius">360dp</dimen>
+
+    <!--    Button size-->
+    <dimen name="socialNetworkButtonSize">60dp</dimen>
+    <dimen name="mainButtonHeight">55dp</dimen>
+    <dimen name="secondaryButtonWeight">55dp</dimen>
+
+<!--    Margin size-->
+    <dimen name="marginMin">8dp</dimen>
+    <dimen name="marginMid">16dp</dimen>
+    <dimen name="marginMax">146dp</dimen>
+    <dimen name="marginUserInformation">74dp</dimen>
+
+
+</resources>

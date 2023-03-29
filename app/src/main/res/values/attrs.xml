@@ -1,0 +1,7 @@
+<resources>
+    <declare-styleable name="ButtonAttrs">
+        <attr name="mainButtonColor" format="color" />
+        <attr name="secondaryButtonColor" format="color" />
+        <attr name="pressedButtonColor" format="color"/>
+    </declare-styleable>
+</resources>
