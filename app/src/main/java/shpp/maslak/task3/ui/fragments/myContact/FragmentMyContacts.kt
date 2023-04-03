@@ -17,14 +17,17 @@ import kotlinx.coroutines.launch
 import shpp.maslak.task3.R
 import shpp.maslak.task3.databinding.FragmentMyContactsBinding
 import shpp.maslak.task3.ui.base.BaseFragment
+import shpp.maslak.task3.util.App
 import shpp.maslak.task3.util.model.Contact
+import shpp.maslak.task3.util.viewModelCreator
 
 
 class FragmentMyContacts :
     BaseFragment<FragmentMyContactsBinding>(FragmentMyContactsBinding::inflate) {
     private lateinit var addContact: AppCompatTextView
     private val adapter: ContactAdapter by lazy { createAdapter() }
-    private val contactViewModel: ViewModelForContacts by viewModels()
+    private val contactViewModel: ViewModelForContacts by viewModelCreator { ViewModelForContacts(
+        App.manager) }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -71,6 +74,14 @@ class FragmentMyContacts :
 
 
     override fun setObservers() {
+//        lifecycleScope.launch{
+//            repeatOnLifecycle(Lifecycle.State.STARTED){
+//                contactViewModel.isShowSnackbarFlow.collect{
+//                    flag -> if (flag) showDeleteMessage()
+//                }
+//            }
+//        }
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 contactViewModel.contactState.collect { list ->

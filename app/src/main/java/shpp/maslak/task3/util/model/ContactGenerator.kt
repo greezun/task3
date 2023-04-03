@@ -18,7 +18,7 @@ class ContactGenerator {
     fun generateContacts(): MutableStateFlow<List<Contact>> {
         Log.d("myLog", "generate contacts")
         return MutableStateFlow(
-            List(5) { index -> randomContact(id = index + 1L) }
+            List(2) { index -> randomContact(id = index + 1L) }
         )
     }
 
@@ -31,8 +31,8 @@ class ContactGenerator {
         )
     }
 
-    fun getContacts(flag: Boolean): MutableStateFlow<List<Contact>>{
-        return if (flag)  getContactFromPhone() else generateContacts()
+    fun getContacts(): MutableStateFlow<List<Contact>>{
+        return  generateContacts()
     }
 
     private fun randomContact(id: Long): Contact {

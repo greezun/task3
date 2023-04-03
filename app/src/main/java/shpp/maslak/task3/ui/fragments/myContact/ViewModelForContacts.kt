@@ -1,51 +1,42 @@
 package shpp.maslak.task3.ui.fragments.myContact
 
-
-import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import shpp.maslak.task3.util.ContactManager
 import shpp.maslak.task3.util.model.Contact
-import shpp.maslak.task3.util.model.ContactGenerator
-
-private const val IS_GET_PHONE_CONTACTS = false
-
-class ViewModelForContacts : ViewModel() {
 
 
-    private val contactProvider = ContactGenerator()
-    private var _contactFlow =contactProvider.getContacts(IS_GET_PHONE_CONTACTS)
-    val contactState: StateFlow<List<Contact>> = _contactFlow
+class ViewModelForContacts(private val manager: ContactManager) : ViewModel() {
 
 
-    fun deleteContact(contact: Contact): Int {
-        var index: Int
-        _contactFlow.value = _contactFlow.value.toMutableList().apply {
-            index = indexOf(contact)
-            remove(contact)
+    private var _contactList = MutableStateFlow<List<Contact>>(emptyList())
+    val contactState = _contactList
 
+    init {
+        viewModelScope.launch {
+            manager.getContactList().collectLatest { contactList ->
+                _contactList.value = contactList
+            }
         }
-        return index
     }
 
     fun addContact(contact: Contact) {
-        _contactFlow.value = _contactFlow.value.toMutableList().apply {
-            add(contact)
-        }
+        manager.addContact(contact)
+
     }
 
     fun addContactOnIndex(index: Int, contact: Contact) {
-        _contactFlow.value = _contactFlow.value.toMutableList().apply {
-            add(index, contact)
-        }
+        manager.addContactFromIndex(index, contact)
+
     }
 
-    fun getContact(index: Int) = _contactFlow.value[index]
-
-//    override fun onConfirmButtonClicked(contact: Contact) {
-//        addContact(contact)
-//    }
-
-
+    fun getContact(index: Int) = manager.getContact(index)
+    fun deleteContact(contact: Contact): Int {
+        return manager.deleteContact(contact)
+    }
 
 }

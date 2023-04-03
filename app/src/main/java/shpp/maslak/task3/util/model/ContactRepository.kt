@@ -1,10 +1,10 @@
-package com.mycontacts.model
+package shpp.maslak.task3.util.model
 
 import kotlinx.coroutines.flow.MutableStateFlow
-import shpp.maslak.task3.util.model.Contact
-import shpp.maslak.task3.util.model.ContactGenerator
+import kotlinx.coroutines.flow.StateFlow
+import shpp.maslak.task3.util.ContactManager
 
-class ContactRepository {
+class ContactRepository : ContactManager {
 
     private val contactProvider = ContactGenerator()
     private var _contactFlow = MutableStateFlow<List<Contact>>(emptyList())
@@ -46,6 +46,26 @@ class ContactRepository {
         private const val IS_GET_PHONE_CONTACTS = false
 
 
+    }
+
+    override fun addContact(contact: Contact) {
+        TODO("Not yet implemented")
+    }
+
+    override fun addContactFromIndex(index: Int, contact: Contact) {
+        TODO("Not yet implemented")
+    }
+
+    override fun deleteContact(contact: Contact): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun getContact(index: Int): Contact {
+        TODO("Not yet implemented")
+    }
+
+    override fun getContactList(): StateFlow<List<Contact>> {
+        TODO("Not yet implemented")
     }
 }
 
