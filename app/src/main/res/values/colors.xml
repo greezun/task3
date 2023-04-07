@@ -15,5 +15,14 @@
     <color name="grayText">#18181F</color>
     <color name="grayText2">#B2B2B3</color>
 
+    <color name="black_dark">#121212</color>
+    <color name="lightGray">#7A7A7A</color>
+    <color name="yellow">#FFC107</color>
+    <color name="grayText_dark">#F2F2F2</color>
+    <color name="grayText2_dark">#9E9E9E</color>
+
+
+
+
 
 </resources>

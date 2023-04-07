@@ -1,11 +1,20 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
+
 }
+
+
+
 
 android {
     namespace 'shpp.maslak.task3'
     compileSdk 33
+
+    packagingOptions {
+        exclude 'META-INF/*'
+    }
 
     defaultConfig {
         applicationId "shpp.maslak.task3"
@@ -34,7 +43,15 @@ android {
     buildFeatures{
         viewBinding true
     }
+
+
+
+
+
+
 }
+
+
 
 dependencies {
 
@@ -53,4 +70,5 @@ dependencies {
 
     implementation'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation'androidx.navigation:navigation-ui-ktx:2.5.3'
+//    implementation 'androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3'
 }

@@ -1,10 +1,8 @@
 package shpp.maslak.task3.ui.fragments.myContact
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -14,16 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
-import shpp.maslak.task3.R
 import shpp.maslak.task3.databinding.FragmentMyContactsBinding
 import shpp.maslak.task3.ui.base.BaseFragment
 import shpp.maslak.task3.util.App
 import shpp.maslak.task3.util.model.Contact
 import shpp.maslak.task3.util.viewModelCreator
 
-
+ const val MESSAGE_DELETE = "Contact has been deleted"
+ const val SNACKBAR_ACTION_BUTTON_TEXT = "UNDO"
 class FragmentMyContacts :
     BaseFragment<FragmentMyContactsBinding>(FragmentMyContactsBinding::inflate) {
+
     private lateinit var addContact: AppCompatTextView
     private val adapter: ContactAdapter by lazy { createAdapter() }
     private val contactViewModel: ViewModelForContacts by viewModelCreator { ViewModelForContacts(
@@ -74,19 +73,11 @@ class FragmentMyContacts :
 
 
     override fun setObservers() {
-//        lifecycleScope.launch{
-//            repeatOnLifecycle(Lifecycle.State.STARTED){
-//                contactViewModel.isShowSnackbarFlow.collect{
-//                    flag -> if (flag) showDeleteMessage()
-//                }
-//            }
-//        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 contactViewModel.contactState.collect { list ->
                     adapter.submitList(list)
-                    Log.d("myLog", "observ ${list.toString()}")
                 }
             }
         }
@@ -101,10 +92,9 @@ class FragmentMyContacts :
             }
 
             override fun onContactDetail(contact: Contact) {
-                findNavController().navigate(R.id.fragmentContactDetail)
+                val direction = FragmentMyContactsDirections.actionFragmentMyContactsToFragmentContactDetail(contact.id)
+                findNavController().navigate(direction)
             }
-
-
         })
     }
 
@@ -114,11 +104,6 @@ class FragmentMyContacts :
                 contactViewModel.addContactOnIndex(index, contact)
             }
             .show()
-    }
-
-    companion object {
-        private const val MESSAGE_DELETE = "Contact has been deleted"
-        private const val SNACKBAR_ACTION_BUTTON_TEXT = "UNDO"
     }
 
 

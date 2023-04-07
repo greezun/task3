@@ -10,5 +10,7 @@
     <string name="address">Address</string>
     <string name="birthDate">Date of Birth</string>
     <string name="message">message</string>
+    <string name="contacts">Contacts</string>
+    <string name="profile">Profile</string>
 
 </resources>

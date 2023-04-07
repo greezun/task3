@@ -3,7 +3,6 @@ package shpp.maslak.task3.ui.fragments.myContact
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.util.ContactManager

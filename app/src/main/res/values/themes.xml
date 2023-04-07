@@ -17,6 +17,8 @@
         <item name="mainButtonColor">@color/orange</item>
         <item name="secondaryButtonColor">@color/grayText</item>
         <item name="pressedButtonColor">@color/grayText2</item>
+        <item name="colorPrimaryDark">?attr/colorPrimary</item>
+
 
     </style>
 

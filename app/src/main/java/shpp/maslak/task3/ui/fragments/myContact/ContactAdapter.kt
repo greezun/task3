@@ -41,7 +41,7 @@ class ContactAdapter(private val contactActionListener: ContactActionListener) :
             basket.tag = contact
             cvItemOfContact.tag = contact
             textViewUserName.text = contact.userName
-            textViewCareer.text= contact.address
+            textViewCareer.text= contact.career
             imageViewAvatar.setContactPhoto(contact.avatar)
         }
 

@@ -18,6 +18,10 @@
         <item name="android:textColor">@color/grayText2</item>
     </style>
 
+    <style name="Text.PrimaryLight.Title">
+        <item name="android:textSize">@dimen/titleMedium</item>
+    </style>
+
 
 <!--    Button style-->
 
@@ -27,5 +31,12 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:background">?attr/mainButtonColor</item>
     </style>
+
+
+    <style name="ToolbarColoredBackArrow" >
+        <item name="android:textColorSecondary">?attr/colorOnPrimary</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
 
 </resources>

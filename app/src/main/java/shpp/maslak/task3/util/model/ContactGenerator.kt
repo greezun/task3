@@ -7,7 +7,7 @@ import com.github.javafaker.Faker
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import shpp.maslak.task3.util.App
-import kotlin.random.Random
+
 
 class ContactGenerator {
 
@@ -15,21 +15,21 @@ class ContactGenerator {
     private val contactsFlow = MutableStateFlow<List<Contact>>(emptyList())
 
 
-    fun generateContacts(): MutableStateFlow<List<Contact>> {
+    private fun generateContacts(): MutableStateFlow<List<Contact>> {
         Log.d("myLog", "generate contacts")
         return MutableStateFlow(
             List(2) { index -> randomContact(id = index + 1L) }
         )
     }
 
-    fun createContact(userName: String, address: String): Contact {
-        return Contact(
-            id = contactsFlow.value.size + 1L,
-            avatar = IMAGES[Random.nextInt(0, 12)],
-            userName = userName,
-            address = address
-        )
-    }
+//    fun createContact(userName: String, address: String): Contact {
+//        return Contact(
+//            id = contactsFlow.value.size + 1L,
+//            avatar = IMAGES[Random.nextInt(0, 12)],
+//            userName = userName,
+//            address = address
+//        )
+//    }
 
     fun getContacts(): MutableStateFlow<List<Contact>>{
         return  generateContacts()
@@ -41,7 +41,8 @@ class ContactGenerator {
             id = id,
             avatar = IMAGES[id.rem(IMAGES.size).toInt()],
             userName = faker.name().fullName(),
-            address = faker.address().city()
+            address = faker.address().fullAddress(),
+            career = faker.artist().name()
         )
     }
 
@@ -66,7 +67,7 @@ class ContactGenerator {
             while (contacts.moveToNext()) {
                 val name =
                     contacts.getString(contacts.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
-                val obj = Contact(counter, "", name, "")
+                val obj = Contact(counter, "", name, "", "")
                 contactList.add(obj)
                 counter++
 

@@ -8,14 +8,30 @@
     <fragment
         android:id="@+id/fragmentMyContacts"
         android:name="shpp.maslak.task3.ui.fragments.myContact.FragmentMyContacts"
-        android:label="fragment_my_contacts"
-        tools:layout="@layout/fragment_my_contacts" >
+        android:label="@string/contacts"
+        tools:layout="@layout/fragment_my_contacts">
         <action
             android:id="@+id/action_fragmentMyContacts_to_fragmentContactDetail"
-            app:destination="@id/fragmentContactDetail" />
+            app:destination="@id/fragmentContactDetail"
+            app:enterAnim="@anim/zoom_in"
+            app:exitAnim="@anim/static_animation"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="contactId"
+                app:argType="long"
+                app:nullable="false" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/fragmentContactDetail"
         android:name="shpp.maslak.task3.ui.fragments.contactDetail.FragmentContactDetail"
-        android:label="FragmentContactDetail" />
+        android:label="@string/profile"
+        >
+        <argument
+            android:name="contactId"
+            app:argType="long"
+            app:nullable="false" />
+
+    </fragment>
 </navigation>

@@ -7,7 +7,6 @@
     tools:context="ui.fragments.contactDetail.FragmentContactDetail">
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
@@ -17,8 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="0.5">
-
+        app:layout_constraintVertical_weight="0.35">
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -28,12 +26,12 @@
             android:layout_marginTop="@dimen/marginMin"
             android:layout_marginBottom="@dimen/marginMin"
             android:text="@string/user_name"
-            android:textSize="@dimen/titleMedium"
             android:textAppearance="@style/Text.PrimaryLight"
+            android:textSize="@dimen/titleMedium"
             app:layout_constraintBottom_toTopOf="@+id/career"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"/>
+            tools:ignore="MissingConstraints" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/career"
@@ -41,43 +39,38 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/marginMid"
             android:text="@string/career"
-            android:textSize="@dimen/titleSmall"
             android:textAppearance="@style/Text.Secondary"
+            android:textSize="@dimen/titleSmall"
             app:layout_constraintBottom_toTopOf="@+id/address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"/>
+            tools:ignore="MissingConstraints" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/address"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/marginMid"
+            android:layout_marginBottom="@dimen/marginBottomAddress"
             android:text="@string/address"
             android:textAppearance="@style/Text.Secondary"
             android:textSize="@dimen/titleSmall"
+            android:layout_marginHorizontal="@dimen/marginOutAddress"
+            android:gravity="center_horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"/>
+            tools:ignore="MissingConstraints" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvUserPhoto"
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/picture"
             android:layout_width="@dimen/mainAvatarSize"
             android:layout_height="@dimen/mainAvatarSize"
-            app:cardCornerRadius="@dimen/main_avatar_radius"
             android:layout_marginBottom="@dimen/marginMid"
             app:layout_constraintBottom_toTopOf="@id/userName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/picture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/avatar" />
-        </androidx.cardview.widget.CardView>
+            android:src="@drawable/avatar" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -107,8 +100,6 @@
             tools:ignore="TextContrastCheck,TextSizeCheck,UsingOnClickInXml,VisualLintButtonSize" />
 
 
-
-
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/buttonFB"
             android:layout_width="wrap_content"
@@ -136,7 +127,7 @@
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/image_view_linked_in_background_normal"
-            tools:ignore="MissingConstraints,SpeakableTextPresentCheck"/>
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
 
         <androidx.constraintlayout.helper.widget.Flow
@@ -144,12 +135,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:constraint_referenced_ids="buttonFB, buttonInsta, buttonLinkedIn"
-            app:flow_horizontalGap="@dimen/marginMid"
+            app:flow_horizontalGap="@dimen/marginBetweenSNButton"
             app:layout_constraintBottom_toTopOf="@id/btnMessage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

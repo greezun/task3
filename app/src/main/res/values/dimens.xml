@@ -20,7 +20,10 @@
     <dimen name="marginMin">8dp</dimen>
     <dimen name="marginMid">16dp</dimen>
     <dimen name="marginMax">146dp</dimen>
+    <dimen name="marginOutAddress">64dp</dimen>
+    <dimen name="marginBottomAddress">34dp</dimen>
     <dimen name="marginUserInformation">74dp</dimen>
+    <dimen name="marginBetweenSNButton">32dp</dimen>
 
 
 </resources>

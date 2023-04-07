@@ -3,4 +3,5 @@ data class Contact(
     val id: Long,
     val avatar: String,
     val userName: String,
-    val address: String)
+    val address: String,
+    val career:String)
