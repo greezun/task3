@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.util.ContactManager
-import shpp.maslak.task3.util.model.Contact
+import shpp.maslak.task3.data.model.Contact
 
 class ViewModelForContactDetail(
     private val contactId: Long,

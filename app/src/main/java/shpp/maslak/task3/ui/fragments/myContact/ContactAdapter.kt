@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import shpp.maslak.task3.R
 import shpp.maslak.task3.databinding.ItemContactBinding
-import shpp.maslak.task3.util.model.Contact
+import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.util.setContactPhoto
 
 
@@ -22,6 +22,7 @@ interface ContactActionListener {
 class ContactAdapter(private val contactActionListener: ContactActionListener) :
     ListAdapter<Contact, ContactAdapter.ContactHolder>(ContactComparator()), View.OnClickListener {
 
+    //todo as for me clicklisteners should be in viewHolder class
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemContactBinding.inflate(inflater, parent, false)
@@ -31,6 +32,7 @@ class ContactAdapter(private val contactActionListener: ContactActionListener) :
         return ContactHolder(binding)
     }
 
+    // todo not necessary to override
     override fun getItemCount(): Int {
         return currentList.size
     }
@@ -46,7 +48,7 @@ class ContactAdapter(private val contactActionListener: ContactActionListener) :
         }
 
     }
-    class ContactHolder(
+    inner class ContactHolder(
         val binding: ItemContactBinding
     ) : RecyclerView.ViewHolder(binding.root)
 

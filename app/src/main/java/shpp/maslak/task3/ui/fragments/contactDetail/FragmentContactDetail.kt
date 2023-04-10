@@ -10,7 +10,7 @@ import androidx.navigation.fragment.navArgs
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.databinding.FragmentContactDetailBinding
 import shpp.maslak.task3.ui.base.BaseFragment
-import shpp.maslak.task3.util.App
+import shpp.maslak.task3.App
 import shpp.maslak.task3.util.setContactPhoto
 import shpp.maslak.task3.util.viewModelCreator
 

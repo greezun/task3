@@ -1,4 +1,4 @@
-package shpp.maslak.task3.util.model
+package shpp.maslak.task3.data.model
 data class Contact(
     val id: Long,
     val avatar: String,

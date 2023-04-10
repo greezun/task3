@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.util.ContactManager
-import shpp.maslak.task3.util.model.Contact
+import shpp.maslak.task3.data.model.Contact
 
 
 class ViewModelForContacts(private val manager: ContactManager) : ViewModel() {

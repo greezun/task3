@@ -1,12 +1,13 @@
-package shpp.maslak.task3.util.model
+package shpp.maslak.task3.data.model
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.provider.ContactsContract
 import android.util.Log
 import com.github.javafaker.Faker
 
 import kotlinx.coroutines.flow.MutableStateFlow
-import shpp.maslak.task3.util.App
+import shpp.maslak.task3.App
 
 
 class ContactGenerator {
@@ -52,7 +53,7 @@ class ContactGenerator {
         val contactFlow = MutableStateFlow<List<Contact>>(emptyList())
         val contactList: MutableList<Contact> = ArrayList()
 
-        val contactResolver = App.instance.contentResolver
+        val contactResolver = Application.get
         val contacts = contactResolver.query(
             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
             null,

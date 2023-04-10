@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 import kotlinx.coroutines.flow.StateFlow
 import shpp.maslak.task3.util.ContactManager
-import shpp.maslak.task3.util.model.Contact
-import shpp.maslak.task3.util.model.ContactGenerator
+import shpp.maslak.task3.data.model.Contact
+import shpp.maslak.task3.data.model.ContactGenerator
 
 class RepositoryContacts: ContactManager {
 
@@ -37,7 +37,7 @@ class RepositoryContacts: ContactManager {
         return index
     }
 
-    override fun getContact(index: Int): Contact  = contactList.value[index]
+    override fun getContact(index: Int): Contact = contactList.value[index]
 
     override fun getContactList():StateFlow<List<Contact>>  = contactList
 

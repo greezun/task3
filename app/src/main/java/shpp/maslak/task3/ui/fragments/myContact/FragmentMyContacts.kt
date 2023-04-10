@@ -14,12 +14,11 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.databinding.FragmentMyContactsBinding
 import shpp.maslak.task3.ui.base.BaseFragment
-import shpp.maslak.task3.util.App
-import shpp.maslak.task3.util.model.Contact
+import shpp.maslak.task3.App
+import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.util.viewModelCreator
 
- const val MESSAGE_DELETE = "Contact has been deleted"
- const val SNACKBAR_ACTION_BUTTON_TEXT = "UNDO"
+
 class FragmentMyContacts :
     BaseFragment<FragmentMyContactsBinding>(FragmentMyContactsBinding::inflate) {
 
@@ -45,6 +44,7 @@ class FragmentMyContacts :
     private fun bindFields() {
         val manager = LinearLayoutManager(requireContext())
         with(binding) {
+            //todo ???
             addContact = tvAddContact
             recyclerView.layoutManager = manager
             recyclerView.adapter = adapter
@@ -87,6 +87,8 @@ class FragmentMyContacts :
     private fun createAdapter(): ContactAdapter {
         return ContactAdapter(contactActionListener = object : ContactActionListener {
             override fun onContactDelete(contact: Contact) {
+                //todo
+                //SRP violation
                 val index = contactViewModel.deleteContact(contact)
                 showDeleteMessage(index, contact)
             }
@@ -101,6 +103,7 @@ class FragmentMyContacts :
     private fun showDeleteMessage(index: Int, contact: Contact) {
         Snackbar.make(binding.root, MESSAGE_DELETE, Snackbar.LENGTH_LONG)
             .setAction(SNACKBAR_ACTION_BUTTON_TEXT) {
+                // todo bad naming
                 contactViewModel.addContactOnIndex(index, contact)
             }
             .show()
