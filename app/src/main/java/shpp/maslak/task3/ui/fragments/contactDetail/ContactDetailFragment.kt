@@ -14,10 +14,10 @@ import shpp.maslak.task3.App
 import shpp.maslak.task3.util.setContactPhoto
 import shpp.maslak.task3.util.viewModelCreator
 
-class FragmentContactDetail: BaseFragment<FragmentContactDetailBinding>(FragmentContactDetailBinding::inflate){
+class ContactDetailFragment: BaseFragment<FragmentContactDetailBinding>(FragmentContactDetailBinding::inflate){
 
-    private val args by navArgs<FragmentContactDetailArgs>()
-    private val viewModel: ViewModelForContactDetail by viewModelCreator { ViewModelForContactDetail(args.contactId, App.manager) }
+    private val args by navArgs<ContactDetailFragmentArgs>()
+    private val viewModel: ContactDetailViewModel by viewModelCreator { ContactDetailViewModel(args.contactId, App.manager) }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

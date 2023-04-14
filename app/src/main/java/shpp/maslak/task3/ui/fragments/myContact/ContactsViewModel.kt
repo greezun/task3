@@ -5,11 +5,11 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import shpp.maslak.task3.util.ContactManager
+import shpp.maslak.task3.data.ContactManager
 import shpp.maslak.task3.data.model.Contact
 
 
-class ViewModelForContacts(private val manager: ContactManager) : ViewModel() {
+class ContactsViewModel(private val manager: ContactManager) : ViewModel() {
 
 
     private var _contactList = MutableStateFlow<List<Contact>>(emptyList())
@@ -23,10 +23,6 @@ class ViewModelForContacts(private val manager: ContactManager) : ViewModel() {
         }
     }
 
-    fun addContact(contact: Contact) {
-        manager.addContact(contact)
-
-    }
 
     fun addContactOnIndex(index: Int, contact: Contact) {
         manager.addContactFromIndex(index, contact)
@@ -34,8 +30,10 @@ class ViewModelForContacts(private val manager: ContactManager) : ViewModel() {
     }
 
     fun getContact(index: Int) = manager.getContact(index)
-    fun deleteContact(contact: Contact): Int {
+    fun deleteContact(contact: Contact){
         return manager.deleteContact(contact)
     }
+
+    fun getIndex(contact: Contact): Int = manager.getIndex(contact)
 
 }

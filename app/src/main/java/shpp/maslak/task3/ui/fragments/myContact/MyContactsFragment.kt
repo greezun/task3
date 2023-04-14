@@ -16,16 +16,20 @@ import shpp.maslak.task3.databinding.FragmentMyContactsBinding
 import shpp.maslak.task3.ui.base.BaseFragment
 import shpp.maslak.task3.App
 import shpp.maslak.task3.data.model.Contact
+import shpp.maslak.task3.util.Constants
 import shpp.maslak.task3.util.viewModelCreator
 
 
-class FragmentMyContacts :
+class MyContactsFragment :
     BaseFragment<FragmentMyContactsBinding>(FragmentMyContactsBinding::inflate) {
 
-    private lateinit var addContact: AppCompatTextView
+    private lateinit var buttonAddContact: AppCompatTextView
     private val adapter: ContactAdapter by lazy { createAdapter() }
-    private val contactViewModel: ViewModelForContacts by viewModelCreator { ViewModelForContacts(
-        App.manager) }
+    private val contactViewModel: ContactsViewModel by viewModelCreator {
+        ContactsViewModel(
+            App.manager
+        )
+    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,8 +48,7 @@ class FragmentMyContacts :
     private fun bindFields() {
         val manager = LinearLayoutManager(requireContext())
         with(binding) {
-            //todo ???
-            addContact = tvAddContact
+            buttonAddContact = tvAddContact
             recyclerView.layoutManager = manager
             recyclerView.adapter = adapter
         }
@@ -68,12 +71,10 @@ class FragmentMyContacts :
         }
         val myHelper = ItemTouchHelper(calBack)
         myHelper.attachToRecyclerView(binding.recyclerView)
-
     }
 
 
     override fun setObservers() {
-
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 contactViewModel.contactState.collect { list ->
@@ -87,29 +88,28 @@ class FragmentMyContacts :
     private fun createAdapter(): ContactAdapter {
         return ContactAdapter(contactActionListener = object : ContactActionListener {
             override fun onContactDelete(contact: Contact) {
-                //todo
-                //SRP violation
-                val index = contactViewModel.deleteContact(contact)
+                val index = contactViewModel.getIndex(contact)
+                contactViewModel.deleteContact(contact)
                 showDeleteMessage(index, contact)
             }
 
             override fun onContactDetail(contact: Contact) {
-                val direction = FragmentMyContactsDirections.actionFragmentMyContactsToFragmentContactDetail(contact.id)
+                val direction =
+                    MyContactsFragmentDirections.actionFragmentMyContactsToFragmentContactDetail(
+                        contact.id
+                    )
                 findNavController().navigate(direction)
             }
         })
     }
 
     private fun showDeleteMessage(index: Int, contact: Contact) {
-        Snackbar.make(binding.root, MESSAGE_DELETE, Snackbar.LENGTH_LONG)
-            .setAction(SNACKBAR_ACTION_BUTTON_TEXT) {
-                // todo bad naming
+        Snackbar.make(binding.root, Constants.MESSAGE_DELETE, Snackbar.LENGTH_LONG)
+            .setAction(Constants.SNACKBAR_ACTION_BUTTON_TEXT) {
                 contactViewModel.addContactOnIndex(index, contact)
             }
             .show()
     }
-
-
 }
 
 

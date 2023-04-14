@@ -2,7 +2,7 @@ package shpp.maslak.task3
 
 import android.app.Application
 import shpp.maslak.task3.data.RepositoryContacts
-import shpp.maslak.task3.util.ContactManager
+import shpp.maslak.task3.data.ContactManager
 
 
 class App : Application() {

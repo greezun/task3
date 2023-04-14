@@ -1,20 +1,13 @@
 package shpp.maslak.task3.data.model
 
-import android.annotation.SuppressLint
-import android.app.Application
-import android.provider.ContactsContract
+
 import android.util.Log
 import com.github.javafaker.Faker
-
 import kotlinx.coroutines.flow.MutableStateFlow
-import shpp.maslak.task3.App
-
 
 class ContactGenerator {
 
     private val faker = Faker.instance()
-    private val contactsFlow = MutableStateFlow<List<Contact>>(emptyList())
-
 
     private fun generateContacts(): MutableStateFlow<List<Contact>> {
         Log.d("myLog", "generate contacts")
@@ -22,15 +15,6 @@ class ContactGenerator {
             List(2) { index -> randomContact(id = index + 1L) }
         )
     }
-
-//    fun createContact(userName: String, address: String): Contact {
-//        return Contact(
-//            id = contactsFlow.value.size + 1L,
-//            avatar = IMAGES[Random.nextInt(0, 12)],
-//            userName = userName,
-//            address = address
-//        )
-//    }
 
     fun getContacts(): MutableStateFlow<List<Contact>>{
         return  generateContacts()
@@ -47,38 +31,6 @@ class ContactGenerator {
         )
     }
 
-    @SuppressLint("Range")
-    fun getContactFromPhone(): MutableStateFlow<List<Contact>> {
-
-        val contactFlow = MutableStateFlow<List<Contact>>(emptyList())
-        val contactList: MutableList<Contact> = ArrayList()
-
-        val contactResolver = Application.get
-        val contacts = contactResolver.query(
-            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-            null,
-            null,
-            null,
-            null,
-            null
-        )
-
-        if (contacts != null && contacts.count > 0) {
-            var counter = 0L
-            while (contacts.moveToNext()) {
-                val name =
-                    contacts.getString(contacts.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
-                val obj = Contact(counter, "", name, "", "")
-                contactList.add(obj)
-                counter++
-
-            }
-            contactFlow.value = contactList
-        }
-        contacts?.close()
-
-        return contactFlow
-    }
 
     companion object {
         private val IMAGES = mutableListOf(

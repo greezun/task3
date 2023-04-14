@@ -1,10 +1,6 @@
 package shpp.maslak.task3.data
 
-import android.util.Log
-import kotlinx.coroutines.flow.MutableStateFlow
-
 import kotlinx.coroutines.flow.StateFlow
-import shpp.maslak.task3.util.ContactManager
 import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.data.model.ContactGenerator
 
@@ -26,18 +22,19 @@ class RepositoryContacts: ContactManager {
         }
     }
 
-    override fun deleteContact(contact: Contact): Int {
-        var index: Int
-        _contactList.value = _contactList.value.toMutableList().apply {
-            index = indexOf(contact)
-            remove(contact)
+    override fun deleteContact(contact: Contact){
 
-            Log.d("myLog", "_contactList.value  ${_contactList.value}" )
+        _contactList.value = _contactList.value.toMutableList().apply {
+
+            remove(contact)
         }
-        return index
+
     }
 
     override fun getContact(index: Int): Contact = contactList.value[index]
+    override fun getIndex(contact: Contact): Int {
+        return _contactList.value.indexOf(contact)
+    }
 
     override fun getContactList():StateFlow<List<Contact>>  = contactList
 
