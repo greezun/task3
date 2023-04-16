@@ -2,7 +2,9 @@ package shpp.maslak.task3.ui.fragments.myContact
 
 
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,16 +12,22 @@ import shpp.maslak.task3.databinding.ItemContactBinding
 import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.util.ContactDifUtil
 import shpp.maslak.task3.util.setContactPhoto
+import kotlin.properties.Delegates
 
 
-class ContactAdapter(private val contactActionListener: ContactActionListener) :
+class ContactAdapter(private val contactActionListener: ContactActionListener
+                      ) :
     ListAdapter<Contact, ContactAdapter.ContactHolder>(ContactDifUtil()){
+
+    var  multiselectMode = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemContactBinding.inflate(inflater, parent, false)
+
         return ContactHolder(binding)
     }
+
 
 
     override fun onBindViewHolder(holder: ContactHolder, position: Int) {
@@ -32,12 +40,20 @@ class ContactAdapter(private val contactActionListener: ContactActionListener) :
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(contact: Contact) {
             with(binding) {
+                Log.d("myLog","multiselectMode in holder $multiselectMode" )
+
+                if(multiselectMode){
+                    basket.visibility = View.GONE
+                    cbItemCheckBox.visibility =View.VISIBLE
+                } else {
+                    basket.visibility = View.VISIBLE
+                    cbItemCheckBox.visibility =View.GONE
+                }
                 basket.tag = contact
                 cvItemOfContact.tag = contact
                 textViewUserName.text = contact.userName
                 textViewCareer.text = contact.career
                 imageViewAvatar.setContactPhoto(contact.avatar)
-
                 cvItemOfContact.setOnClickListener{contactActionListener.onContactDetail(contact)}
                 basket.setOnClickListener { contactActionListener.onContactDelete(contact) }
             }

@@ -24,6 +24,7 @@
     <dimen name="marginBottomAddress">34dp</dimen>
     <dimen name="marginUserInformation">74dp</dimen>
     <dimen name="marginBetweenSNButton">32dp</dimen>
+    <dimen name="checkBoxSize">24dp</dimen>
 
 
 </resources>

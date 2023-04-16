@@ -3,6 +3,7 @@ package shpp.maslak.task3.ui.fragments.myContact
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.data.ContactManager
@@ -14,6 +15,9 @@ class ContactsViewModel(private val manager: ContactManager) : ViewModel() {
 
     private var _contactList = MutableStateFlow<List<Contact>>(emptyList())
     val contactState = _contactList
+
+    private var _multiselectMode = MutableStateFlow(true)
+    val  multiselectMode: StateFlow<Boolean> = _multiselectMode
 
     init {
         viewModelScope.launch {
@@ -35,5 +39,9 @@ class ContactsViewModel(private val manager: ContactManager) : ViewModel() {
     }
 
     fun getIndex(contact: Contact): Int = manager.getIndex(contact)
+
+    fun setMultiselectMode(boolean: Boolean){
+        _multiselectMode.value = boolean
+    }
 
 }

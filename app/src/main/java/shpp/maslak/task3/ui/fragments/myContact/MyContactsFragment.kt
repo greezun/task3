@@ -1,6 +1,8 @@
 package shpp.maslak.task3.ui.fragments.myContact
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.lifecycle.Lifecycle
@@ -24,6 +26,7 @@ class MyContactsFragment :
     BaseFragment<FragmentMyContactsBinding>(FragmentMyContactsBinding::inflate) {
 
     private lateinit var buttonAddContact: AppCompatTextView
+    private var multiselectMode = false
     private val adapter: ContactAdapter by lazy { createAdapter() }
     private val contactViewModel: ContactsViewModel by viewModelCreator {
         ContactsViewModel(
@@ -42,6 +45,13 @@ class MyContactsFragment :
 
     override fun setListeners() {
         onSwipeToDeleteListener()
+        multiselectModeListener()
+    }
+
+    private fun multiselectModeListener() {
+        buttonAddContact.setOnClickListener {
+            contactViewModel.setMultiselectMode(!multiselectMode)
+        }
     }
 
 
@@ -75,11 +85,26 @@ class MyContactsFragment :
 
 
     override fun setObservers() {
+        multiselectModeObserver()
+
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 contactViewModel.contactState.collect { list ->
                     adapter.submitList(list)
                 }
+            }
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun multiselectModeObserver() {
+        lifecycleScope.launch {
+            contactViewModel.multiselectMode.collect { flag ->
+                multiselectMode = flag
+                Log.d("myLog", "multiselectMode $multiselectMode" )
+                adapter.multiselectMode = flag
+                adapter.notifyDataSetChanged()
+
             }
         }
     }
@@ -100,7 +125,9 @@ class MyContactsFragment :
                     )
                 findNavController().navigate(direction)
             }
-        })
+        }
+        )
+
     }
 
     private fun showDeleteMessage(index: Int, contact: Contact) {

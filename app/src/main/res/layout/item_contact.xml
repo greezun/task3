@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:focusable="true">
-    
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cvItemOfContact"
         android:layout_width="0dp"
@@ -21,66 +21,70 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/basket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/marginMin"
-            android:layout_gravity="end|center"
-            android:src="@drawable/basket_background_normal">
-
-        </androidx.appcompat.widget.AppCompatImageView>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewUserName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/marginUserInformation"
-            android:layout_marginBottom="@dimen/marginMin"
-            android:text="@string/user_name" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/textViewCareer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/marginUserInformation"
-            android:layout_marginTop="@dimen/marginMin"
-
-            android:text="@string/career" />
-
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1.0"
             app:layout_constraintCircleRadius="5dp"
             tools:ignore="MissingConstraints">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewAvatar"
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/cbItemCheckBox"
+                android:layout_width="@dimen/checkBoxSize"
+                android:layout_height="@dimen/checkBoxSize"
+                android:layout_marginStart="@dimen/marginMin"
+                android:layout_gravity="center_vertical"
+                android:button="@drawable/checkbox_item"
+                android:checked="false"
+                android:visibility="gone"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewAvatar"
                 android:layout_width="@dimen/secondaryAvatarSize"
                 android:layout_height="@dimen/secondaryAvatarSize"
-                app:cardCornerRadius="360dp"
-
+                android:layout_weight="0.1"
+                android:layout_marginHorizontal="@dimen/marginMin"
                 android:layout_marginVertical="@dimen/marginMin"
-                android:layout_marginHorizontal="@dimen/marginMin">
+                android:src="@drawable/avatar" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imageViewAvatar"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/avatar"
 
-                    />
+                    android:layout_marginTop="@dimen/marginMin"
+                    android:text="@string/user_name" />
 
-            </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewCareer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/marginMin"
+                    android:text="@string/career" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/basket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginHorizontal="@dimen/marginMid"
+                android:src="@drawable/basket_background_normal" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </androidx.cardview.widget.CardView>
 
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
