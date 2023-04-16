@@ -5,9 +5,6 @@ plugins {
 
 }
 
-
-
-
 android {
     namespace 'shpp.maslak.task3'
     compileSdk 33
@@ -43,15 +40,7 @@ android {
     buildFeatures{
         viewBinding true
     }
-
-
-
-
-
-
 }
-
-
 
 dependencies {
 

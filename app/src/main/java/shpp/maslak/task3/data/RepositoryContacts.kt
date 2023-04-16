@@ -18,14 +18,14 @@ class RepositoryContacts: ContactManager {
 
     override fun addContactFromIndex(index: Int, contact: Contact) {
         _contactList.value = _contactList.value.toMutableList().apply {
-            add(index, contact)
+            if(!contains(contact)) {
+                add(index, contact)
+            }
         }
     }
 
     override fun deleteContact(contact: Contact){
-
         _contactList.value = _contactList.value.toMutableList().apply {
-
             remove(contact)
         }
 
