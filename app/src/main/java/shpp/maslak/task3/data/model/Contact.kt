@@ -4,4 +4,5 @@ data class Contact(
     val avatar: String,
     val userName: String,
     val address: String,
-    val career:String)
+    val career:String,
+    var isSelected: Boolean = false)

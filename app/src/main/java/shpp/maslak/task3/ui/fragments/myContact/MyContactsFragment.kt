@@ -40,6 +40,7 @@ class MyContactsFragment :
         bindFields()
         setObservers()
         setListeners()
+
     }
 
 
@@ -53,7 +54,6 @@ class MyContactsFragment :
             contactViewModel.setMultiselectMode(!multiselectMode)
         }
     }
-
 
     private fun bindFields() {
         val manager = LinearLayoutManager(requireContext())
@@ -86,7 +86,10 @@ class MyContactsFragment :
 
     override fun setObservers() {
         multiselectModeObserver()
+        contactsListObserver()
+    }
 
+    private fun contactsListObserver() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 contactViewModel.contactState.collect { list ->
@@ -101,9 +104,11 @@ class MyContactsFragment :
         lifecycleScope.launch {
             contactViewModel.multiselectMode.collect { flag ->
                 multiselectMode = flag
-                Log.d("myLog", "multiselectMode $multiselectMode" )
+                Log.d("myLog", "multiselectMode $multiselectMode")
                 adapter.multiselectMode = flag
                 adapter.notifyDataSetChanged()
+                val basket = binding.ivBasketMultiselect
+                basket.visibility = if(flag) View.VISIBLE else View.GONE
 
             }
         }
@@ -125,9 +130,11 @@ class MyContactsFragment :
                     )
                 findNavController().navigate(direction)
             }
-        }
-        )
 
+            override fun setMultiselectMode(boolean: Boolean) {
+                contactViewModel.setMultiselectMode(boolean)
+            }
+        })
     }
 
     private fun showDeleteMessage(index: Int, contact: Contact) {

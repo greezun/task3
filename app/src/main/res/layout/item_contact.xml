@@ -12,6 +12,7 @@
         android:id="@+id/cvItemOfContact"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/item_contact_background_color"
         android:layout_marginHorizontal="@dimen/marginMin"
         android:layout_marginVertical="@dimen/marginMin"
         app:cardCornerRadius="5dp"

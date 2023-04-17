@@ -16,7 +16,7 @@ class ContactsViewModel(private val manager: ContactManager) : ViewModel() {
     private var _contactList = MutableStateFlow<List<Contact>>(emptyList())
     val contactState = _contactList
 
-    private var _multiselectMode = MutableStateFlow(true)
+    private var _multiselectMode = MutableStateFlow(false)
     val  multiselectMode: StateFlow<Boolean> = _multiselectMode
 
     init {
