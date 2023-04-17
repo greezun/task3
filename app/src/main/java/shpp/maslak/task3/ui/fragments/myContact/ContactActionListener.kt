@@ -5,6 +5,7 @@ import shpp.maslak.task3.data.model.Contact
 interface ContactActionListener {
     fun onContactDelete(contact: Contact)
     fun onContactDetail(contact: Contact)
+    fun longClick(contact: Contact)
 
-    fun setMultiselectMode(boolean: Boolean)
+
 }

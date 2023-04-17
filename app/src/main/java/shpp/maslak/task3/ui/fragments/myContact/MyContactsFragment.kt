@@ -46,14 +46,14 @@ class MyContactsFragment :
 
     override fun setListeners() {
         onSwipeToDeleteListener()
-        multiselectModeListener()
+//        multiselectModeListener()
     }
 
-    private fun multiselectModeListener() {
-        buttonAddContact.setOnClickListener {
-            contactViewModel.setMultiselectMode(!multiselectMode)
-        }
-    }
+//    private fun multiselectModeListener() {
+//        buttonAddContact.setOnClickListener {
+//            contactViewModel.setMultiselectMode(!multiselectMode)
+//        }
+//    }
 
     private fun bindFields() {
         val manager = LinearLayoutManager(requireContext())
@@ -102,13 +102,13 @@ class MyContactsFragment :
     @SuppressLint("NotifyDataSetChanged")
     private fun multiselectModeObserver() {
         lifecycleScope.launch {
-            contactViewModel.multiselectMode.collect { flag ->
-                multiselectMode = flag
+            contactViewModel.multiselectMode.collect { list ->
+                multiselectMode = list.isNotEmpty()
                 Log.d("myLog", "multiselectMode $multiselectMode")
-                adapter.multiselectMode = flag
+                adapter.multiselectMode = multiselectMode
                 adapter.notifyDataSetChanged()
                 val basket = binding.ivBasketMultiselect
-                basket.visibility = if(flag) View.VISIBLE else View.GONE
+                basket.visibility = if(multiselectMode) View.VISIBLE else View.GONE
 
             }
         }
@@ -131,9 +131,12 @@ class MyContactsFragment :
                 findNavController().navigate(direction)
             }
 
-            override fun setMultiselectMode(boolean: Boolean) {
-                contactViewModel.setMultiselectMode(boolean)
+            override fun longClick(contact: Contact) {
+                contact.isSelected = true
+                contactViewModel.addToSelected(contact)
+                adapter.notifyDataSetChanged()
             }
+
         })
     }
 

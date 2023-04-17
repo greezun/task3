@@ -57,9 +57,11 @@ class ContactAdapter(
                 textViewCareer.text = contact.career
                 imageViewAvatar.setContactPhoto(contact.avatar)
                 cvItemOfContact.setOnLongClickListener {
-                    contactActionListener.setMultiselectMode(true)
+                    contactActionListener.longClick(contact)
                     true
+
                 }
+                Log.d("myLog", "${contact.userName}  ${contact.isSelected}")
                 cvItemOfContact.setOnClickListener {
                     if (multiselectMode) {
                         cbItemCheckBox.isChecked = !cbItemCheckBox.isChecked
