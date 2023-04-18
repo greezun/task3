@@ -1,6 +1,6 @@
 package shpp.maslak.task3.ui.fragments.myContact
 
-import android.util.Log
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,27 +24,11 @@ class ContactsViewModel(private val manager: ContactManager) : ViewModel() {
         viewModelScope.launch {
             manager.getContactList().collectLatest { contactList ->
                 _contactList.value = contactList
-                Log.d("myLog", "contact list init ${contactState.value.toString()}")
-//                create()
+
             }
         }
+
     }
-
-
-
-
-//    private fun create(){
-//        _selectedContactsList.value =
-//             _contactList.value.filter {
-//                it.isSelected
-//            }
-
-
-//        Log.d("myLog", "contact list ${contactState.value.toString()}")
-//        Log.d("myLog", "selected contact list ${_selectedContactsList.value.toString()}" )
-//
-//    }
-
 
     fun addContactOnIndex(index: Int, contact: Contact) {
         manager.addContactFromIndex(index, contact)
@@ -58,14 +42,21 @@ class ContactsViewModel(private val manager: ContactManager) : ViewModel() {
 
     fun getIndex(contact: Contact): Int = manager.getIndex(contact)
 
-    fun addToSelected(contact: Contact){
-        _selectedContactsList.value.toMutableList().apply {
-            add(contact)
+    fun changeSelectedList(contact: Contact){
+        _selectedContactsList.value = _selectedContactsList.value.toMutableList().apply {
+            if(contact.isSelected){
+                add(contact)
+            } else{
+                remove(contact)
+            }
+
         }
     }
+    fun deleteSelected() {
+        _contactList.value = _contactList.value.toMutableList().filter { !it.isSelected }
+        _selectedContactsList.value = emptyList()
+    }
 
-//    fun setMultiselectMode(boolean: Boolean){
-//        _multiselectMode.value = boolean
-//    }
+
 
 }

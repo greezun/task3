@@ -12,9 +12,6 @@ class App : Application() {
         manager = RepositoryContacts()
     }
 
-
-
-
     companion object {
         private lateinit var app: App
         val instance: App get() = app

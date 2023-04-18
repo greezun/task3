@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -26,6 +28,7 @@ class MyContactsFragment :
     BaseFragment<FragmentMyContactsBinding>(FragmentMyContactsBinding::inflate) {
 
     private lateinit var buttonAddContact: AppCompatTextView
+    private lateinit var buttonDelete: AppCompatImageView
     private var multiselectMode = false
     private val adapter: ContactAdapter by lazy { createAdapter() }
     private val contactViewModel: ContactsViewModel by viewModelCreator {
@@ -46,19 +49,21 @@ class MyContactsFragment :
 
     override fun setListeners() {
         onSwipeToDeleteListener()
-//        multiselectModeListener()
+        onSelectedContactDeleteListener()
+
     }
 
-//    private fun multiselectModeListener() {
-//        buttonAddContact.setOnClickListener {
-//            contactViewModel.setMultiselectMode(!multiselectMode)
-//        }
-//    }
+    private fun onSelectedContactDeleteListener() {
+        buttonDelete.setOnClickListener {
+            contactViewModel.deleteSelected()
+        }
+    }
 
     private fun bindFields() {
         val manager = LinearLayoutManager(requireContext())
         with(binding) {
             buttonAddContact = tvAddContact
+            buttonDelete = ivBasketMultiselect
             recyclerView.layoutManager = manager
             recyclerView.adapter = adapter
         }
@@ -104,7 +109,6 @@ class MyContactsFragment :
         lifecycleScope.launch {
             contactViewModel.multiselectMode.collect { list ->
                 multiselectMode = list.isNotEmpty()
-                Log.d("myLog", "multiselectMode $multiselectMode")
                 adapter.multiselectMode = multiselectMode
                 adapter.notifyDataSetChanged()
                 val basket = binding.ivBasketMultiselect
@@ -117,13 +121,13 @@ class MyContactsFragment :
 
     private fun createAdapter(): ContactAdapter {
         return ContactAdapter(contactActionListener = object : ContactActionListener {
-            override fun onContactDelete(contact: Contact) {
+            override fun onDelete(contact: Contact) {
                 val index = contactViewModel.getIndex(contact)
                 contactViewModel.deleteContact(contact)
                 showDeleteMessage(index, contact)
             }
 
-            override fun onContactDetail(contact: Contact) {
+            override fun onContactHolder(contact: Contact) {
                 val direction =
                     MyContactsFragmentDirections.actionFragmentMyContactsToFragmentContactDetail(
                         contact.id
@@ -131,10 +135,16 @@ class MyContactsFragment :
                 findNavController().navigate(direction)
             }
 
-            override fun longClick(contact: Contact) {
+            override fun onLongClick(contact: Contact) {
                 contact.isSelected = true
-                contactViewModel.addToSelected(contact)
-                adapter.notifyDataSetChanged()
+                contactViewModel.changeSelectedList(contact)
+
+
+            }
+
+            override fun onCheckBox(isSelected: Boolean, contact: Contact) {
+                contact.isSelected = isSelected
+                contactViewModel.changeSelectedList(contact)
             }
 
         })

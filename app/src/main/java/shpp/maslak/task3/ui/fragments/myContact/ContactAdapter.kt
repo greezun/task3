@@ -2,7 +2,6 @@ package shpp.maslak.task3.ui.fragments.myContact
 
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import shpp.maslak.task3.databinding.ItemContactBinding
 import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.util.ContactDifUtil
 import shpp.maslak.task3.util.setContactPhoto
-import kotlin.properties.Delegates
 
 
 class ContactAdapter(
@@ -57,21 +55,22 @@ class ContactAdapter(
                 textViewCareer.text = contact.career
                 imageViewAvatar.setContactPhoto(contact.avatar)
                 cvItemOfContact.setOnLongClickListener {
-                    contactActionListener.longClick(contact)
+                    contactActionListener.onLongClick(contact)
                     true
 
                 }
-                Log.d("myLog", "${contact.userName}  ${contact.isSelected}")
+
                 cvItemOfContact.setOnClickListener {
                     if (multiselectMode) {
                         cbItemCheckBox.isChecked = !cbItemCheckBox.isChecked
-                        contact.isSelected = cbItemCheckBox.isChecked
-                        Log.d("myLog", "contact selected = ${contact.isSelected}")
+                        contactActionListener.onCheckBox(cbItemCheckBox.isChecked, contact)
+
                     } else {
-                        contactActionListener.onContactDetail(contact)
+                        contactActionListener.onContactHolder(contact)
                     }
                 }
-                basket.setOnClickListener { contactActionListener.onContactDelete(contact) }
+                basket.setOnClickListener { contactActionListener.onDelete(contact) }
+
 
             }
         }
