@@ -2,11 +2,9 @@ package shpp.maslak.task3.ui.fragments.myContact
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -29,7 +27,6 @@ class MyContactsFragment :
 
     private lateinit var buttonAddContact: AppCompatTextView
     private lateinit var buttonDelete: AppCompatImageView
-    private var multiselectMode = false
     private val adapter: ContactAdapter by lazy { createAdapter() }
     private val contactViewModel: ContactsViewModel by viewModelCreator {
         ContactsViewModel(
@@ -43,13 +40,20 @@ class MyContactsFragment :
         bindFields()
         setObservers()
         setListeners()
-
     }
 
 
     override fun setListeners() {
-        onSwipeToDeleteListener()
         onSelectedContactDeleteListener()
+        listenSwipe()
+
+    }
+
+    private fun listenSwipe() {
+        val callBack =  getSwipeCallBack()
+        val itemTouchHelper = ItemTouchHelper(callBack)
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+
 
     }
 
@@ -69,8 +73,8 @@ class MyContactsFragment :
         }
     }
 
-    private fun onSwipeToDeleteListener() {
-        val calBack = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+    private fun getSwipeCallBack(): ItemTouchHelper.SimpleCallback {
+        return object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             override fun onMove(
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder,
@@ -83,9 +87,15 @@ class MyContactsFragment :
                 contactViewModel.deleteContact(contact)
                 showDeleteMessage(index, contact)
             }
+
+            override fun getSwipeDirs(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder
+            ): Int {
+                return if (adapter.isMultiselectMode) 0 else super.getSwipeDirs(recyclerView, viewHolder)
+            }
         }
-        val myHelper = ItemTouchHelper(calBack)
-        myHelper.attachToRecyclerView(binding.recyclerView)
+
     }
 
 
@@ -108,12 +118,11 @@ class MyContactsFragment :
     private fun multiselectModeObserver() {
         lifecycleScope.launch {
             contactViewModel.multiselectMode.collect { list ->
-                multiselectMode = list.isNotEmpty()
-                adapter.multiselectMode = multiselectMode
-                adapter.notifyDataSetChanged()
+                val isMultiselect = list.isNotEmpty()
                 val basket = binding.ivBasketMultiselect
-                basket.visibility = if(multiselectMode) View.VISIBLE else View.GONE
-
+                basket.visibility = if (isMultiselect) View.VISIBLE else View.GONE
+                adapter.isMultiselectMode = isMultiselect
+                adapter.notifyDataSetChanged()
             }
         }
     }
@@ -138,7 +147,6 @@ class MyContactsFragment :
             override fun onLongClick(contact: Contact) {
                 contact.isSelected = true
                 contactViewModel.changeSelectedList(contact)
-
 
             }
 

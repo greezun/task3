@@ -18,7 +18,7 @@ class ContactAdapter(
 ) :
     ListAdapter<Contact, ContactAdapter.ContactHolder>(ContactDifUtil()) {
 
-    var multiselectMode = false
+    var isMultiselectMode = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -38,8 +38,7 @@ class ContactAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindTo(contact: Contact) {
             with(binding) {
-
-                if (multiselectMode) {
+                if (isMultiselectMode) {
                     basket.visibility = View.GONE
                     cbItemCheckBox.visibility = View.VISIBLE
                     cvItemOfContact.setCardBackgroundColor(Color.GRAY)
@@ -54,14 +53,21 @@ class ContactAdapter(
                 textViewUserName.text = contact.userName
                 textViewCareer.text = contact.career
                 imageViewAvatar.setContactPhoto(contact.avatar)
-                cvItemOfContact.setOnLongClickListener {
-                    contactActionListener.onLongClick(contact)
-                    true
+            }
+            setClickListeners(binding, contact)
+        }
 
-                }
+        private fun setClickListeners(binding: ItemContactBinding, contact: Contact) {
+            with(binding){
+                if(!isMultiselectMode) {
+                    cvItemOfContact.setOnLongClickListener {
+                        contactActionListener.onLongClick(contact)
+                        true
+                    }
+                } else cvItemOfContact.setOnLongClickListener(null)
 
                 cvItemOfContact.setOnClickListener {
-                    if (multiselectMode) {
+                    if (isMultiselectMode) {
                         cbItemCheckBox.isChecked = !cbItemCheckBox.isChecked
                         contactActionListener.onCheckBox(cbItemCheckBox.isChecked, contact)
 
@@ -70,9 +76,8 @@ class ContactAdapter(
                     }
                 }
                 basket.setOnClickListener { contactActionListener.onDelete(contact) }
-
-
             }
+
         }
     }
 }

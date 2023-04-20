@@ -12,7 +12,7 @@ class ContactGenerator {
     private fun generateContacts(): MutableStateFlow<List<Contact>> {
         Log.d("myLog", "generate contacts")
         return MutableStateFlow(
-            List(5) { index -> randomContact(id = index + 1L) }
+            List(20) { index -> randomContact(id = index + 1L) }
         )
     }
 
