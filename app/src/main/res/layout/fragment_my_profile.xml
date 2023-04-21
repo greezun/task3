@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ui.fragments.contactDetail.ContactDetailFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="0.35">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginMin"
+            android:layout_marginBottom="@dimen/marginMin"
+            android:text="@string/user_name"
+            android:textAppearance="@style/Text.PrimaryLight"
+            android:textSize="@dimen/titleMedium"
+            app:layout_constraintBottom_toTopOf="@+id/career"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/career"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/marginMid"
+            android:text="@string/career"
+            android:textAppearance="@style/Text.Secondary"
+            android:textSize="@dimen/titleSmall"
+            app:layout_constraintBottom_toTopOf="@+id/address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/marginBottomAddress"
+            android:text="@string/address"
+            android:textAppearance="@style/Text.Secondary"
+            android:textSize="@dimen/titleSmall"
+            android:layout_marginHorizontal="@dimen/marginOutAddress"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/picture"
+            android:layout_width="@dimen/mainAvatarSize"
+            android:layout_height="@dimen/mainAvatarSize"
+            android:layout_marginBottom="@dimen/marginMid"
+            app:layout_constraintBottom_toTopOf="@id/userName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/avatar" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topLayout"
+        app:layout_constraintVertical_weight="0.5">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMessage"
+            style="@style/MainButtonStyle"
+
+            android:layout_marginHorizontal="@dimen/marginMid"
+            android:layout_marginBottom="@dimen/marginMid"
+            android:text="@string/message"
+            android:textAppearance="@style/Text.PrimaryLight"
+            android:textSize="@dimen/titleMedium"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="TextContrastCheck,TextSizeCheck,UsingOnClickInXml,VisualLintButtonSize" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/buttonFB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/image_view_fb_background_normal"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/buttonInsta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/image_view_insta_background_normal"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/buttonLinkedIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/image_view_linked_in_background_normal"
+            tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
+
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="buttonFB, buttonInsta, buttonLinkedIn"
+            app:flow_horizontalGap="@dimen/marginBetweenSNButton"
+            app:layout_constraintBottom_toTopOf="@id/btnMessage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

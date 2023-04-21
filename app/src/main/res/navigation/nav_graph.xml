@@ -2,8 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nan_graph"
-    app:startDestination="@id/fragmentMyContacts">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentPager">
 
     <fragment
         android:id="@+id/fragmentMyContacts"
@@ -27,6 +27,7 @@
         android:id="@+id/fragmentContactDetail"
         android:name="shpp.maslak.task3.ui.fragments.contactDetail.ContactDetailFragment"
         android:label="@string/profile"
+        tools:layout="@layout/fragment_contact_detail"
         >
         <argument
             android:name="contactId"
@@ -34,4 +35,14 @@
             app:nullable="false" />
 
     </fragment>
+    <fragment
+        android:id="@+id/fragmentMyProfile"
+        android:name="shpp.maslak.task3.ui.fragments.myProfile.MyProfileFragment"
+        android:label="FragmentMyProfile"
+        tools:layout="@layout/fragment_my_profile"/>
+    <fragment
+        android:id="@+id/fragmentPager"
+        android:name="shpp.maslak.task3.ui.fragments.pagerFragment.FragmentPager"
+        android:label="FragmentPager" />
+    <action android:id="@+id/action_global_fragmentContactDetail" app:destination="@id/fragmentContactDetail" />
 </navigation>
