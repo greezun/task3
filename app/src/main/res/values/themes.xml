@@ -13,7 +13,7 @@
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
 
-        <item name="colorOutline">?attr/colorPrimaryVariant</item>
+        <item name="boxStrokeColor">@color/orange</item>
         <item name="mainButtonColor">@color/orange</item>
         <item name="secondaryButtonColor">@color/grayText</item>
         <item name="pressedButtonColor">@color/grayText2</item>

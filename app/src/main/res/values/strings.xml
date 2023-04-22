@@ -13,4 +13,25 @@
     <string name="contacts">Contacts</string>
     <string name="profile">Profile</string>
 
+
+    <string name="password">Password</string>
+    <string name="fill_profile">Fill out the profile and go to the application!</string>
+    <string name="acquaintance">Let\'s get acquainted</string>
+    <string name="remember_me">Remember me</string>
+    <string name="or">or</string>
+    <string name="register">register</string>
+    <string name="login">login</string>
+    <string name="invitationToRegister">By clicking Register you agree to our Terms &#13; and Conditions</string>
+    <string name="is_have_account">Already have an account?</string>
+    <string name="sign_in">Sign in</string>
+    <string name="required">Required</string>
+    <string name="checkEmailError">Invalid email address</string>
+    <string name="checkPassword.NumberOfCharacters">Minimum 8 character password</string>
+    <string name="checkPassword.UpperCase">Must contain 1 upper-case character</string>
+    <string name="checkPassword.LowerCase">Must contain 1 lower-case character</string>
+    <string name="checkPassword.SpecialCharacteers">Must contain 1 special character (@#$%^&amp;+=)</string>
+    <string name="regex_lower_case" translatable="false">.*[a-z].*</string>
+    <string name="regex_upper_case" translatable="false">.*[A-Z].*</string>
+    <string name="regex_special_symbol" translatable="false">.*[@#\$%^&amp;+=].*</string>
+
 </resources>

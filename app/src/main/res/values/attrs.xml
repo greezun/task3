@@ -4,4 +4,14 @@
         <attr name="secondaryButtonColor" format="color" />
         <attr name="pressedButtonColor" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomGoogleButtonView">
+        <attr name="logoSize" format="dimension" />
+        <attr name="space" format="dimension" />
+        <attr name="cornerRadius" format="dimension"/>
+        <attr name="customViewTextSize" format="dimension" />
+        <attr name="customViewTextFont" format="reference"/>
+    </declare-styleable>
+
+    <attr name="googleButtonsStyle" format="reference"/>
 </resources>

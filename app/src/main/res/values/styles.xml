@@ -30,12 +30,40 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:background">?attr/mainButtonColor</item>
+        <item name="cornerRadius">@dimen/cornerRadius</item>
+        <item name="strokeWidth">@dimen/strokeSize</item>
+    </style>
+
+    <style name="ButtonRegisterStyle" >
+        <item name="android:layout_height">@dimen/mainButtonHeight</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.09</item>
+
     </style>
 
 
     <style name="ToolbarColoredBackArrow" >
         <item name="android:textColorSecondary">?attr/colorOnPrimary</item>
         <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+
+    <style name="TextInputEditLayout"  >
+        <item name="boxStrokeColor">@color/outline_custom_color</item>
+        <item name="android:textColorHint">@color/grayText2</item>
+        <item name="expandedHintEnabled">false</item>
+        <item name="errorEnabled">true</item>
+        <item name="helperTextTextColor">@color/error_text_color</item>
+    </style>
+
+    <style name="TextInputEditText">
+        <item name="android:lines">1</item>
+        <item name="android:textAppearance">@style/Text.Secondary</item>
+        <item name="android:textSize">@dimen/titleMedium</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
     </style>
 
 

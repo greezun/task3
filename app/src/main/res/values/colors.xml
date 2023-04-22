@@ -14,6 +14,7 @@
     <color name="orange">#FB5E06</color>
     <color name="grayText">#18181F</color>
     <color name="grayText2">#B2B2B3</color>
+    <color name="error_text_color">#F44336</color>
     <color name="item_contact_background_color">#E7E7E7</color>
 
     <color name="black_dark">#121212</color>

@@ -1,4 +1,4 @@
-package shpp.maslak.task3.ui
+package shpp.maslak.task3.ui.activities
 
 import android.os.Bundle
 import androidx.navigation.NavController
