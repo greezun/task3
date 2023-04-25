@@ -14,7 +14,7 @@
             android:id="@+id/view_topHalfBg_AddContact"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="?attr/colorPrimary"
+            android:background="?attr/colorTopAppPart"
             app:layout_constraintBottom_toBottomOf="@id/barrier"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +113,7 @@
                         android:id="@+id/userNameField"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="?attr/colorOnSecondary"
+                        android:textColor="?attr/colorBottomAppPart"
                         android:background="?attr/colorSecondary"
                         android:inputType="text"
                         android:hint="@string/userName"
@@ -132,7 +132,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="?attr/colorOnSecondary"
-                        android:background="?attr/colorSecondary"
+                        android:background="?attr/colorBottomAppPart"
                         android:hint="@string/career"
                         android:inputType="text"
                         tools:ignore="VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck" />
@@ -149,7 +149,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="?attr/colorOnSecondary"
-                        android:background="?attr/colorSecondary"
+                        android:background="?attr/colorBottomAppPart"
                         android:hint="@string/e_mail"
                         android:inputType="textEmailAddress"
                         tools:ignore="VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck" />
@@ -166,7 +166,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="?attr/colorOnSecondary"
-                        android:background="?attr/colorSecondary"
+                        android:background="?attr/colorBottomAppPart"
                         android:hint="@string/phone"
                         android:inputType="phone"
                         android:textColorHint="#757575"
@@ -184,7 +184,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="?attr/colorOnSecondary"
-                        android:background="?attr/colorSecondary"
+                        android:background="?attr/colorBottomAppPart"
                         android:hint="@string/address"
                         tools:ignore="VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -200,7 +200,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="?attr/colorOnSecondary"
-                        android:background="?attr/colorSecondary"
+                        android:background="?attr/colorBottomAppPart"
                         android:hint="@string/birthDate"
                         android:inputType="date"
                         tools:ignore="VisualLintTextFieldSize,TextSizeCheck,TextContrastCheck" />

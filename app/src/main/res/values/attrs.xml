@@ -14,4 +14,6 @@
     </declare-styleable>
 
     <attr name="googleButtonsStyle" format="reference"/>
+    <attr name="colorTopAppPart" format="color"/>
+    <attr name="colorBottomAppPart" format="color"/>
 </resources>

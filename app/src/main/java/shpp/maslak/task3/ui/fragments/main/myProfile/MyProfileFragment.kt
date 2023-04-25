@@ -1,4 +1,4 @@
-package shpp.maslak.task3.ui.fragments.myProfile
+package shpp.maslak.task3.ui.fragments.main.myProfile
 
 
 import shpp.maslak.task3.databinding.FragmentMyProfileBinding

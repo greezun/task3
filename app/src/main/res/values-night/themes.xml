@@ -19,6 +19,9 @@
         <item name="pressedButtonColor">@color/grayText2</item>
         <item name="colorOnSurface">?attr/colorOnPrimary</item>
 
+        <item name="colorTopAppPart">@color/lightGray</item>
+        <item name="colorBottomAppPart">@color/black_dark</item>
+
     </style>
 
 

@@ -1,4 +1,4 @@
-package shpp.maslak.task3.ui.fragments.contactDetail
+package shpp.maslak.task3.ui.fragments.main.contactDetail
 
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import shpp.maslak.task3.databinding.FragmentContactDetailBinding
 import shpp.maslak.task3.ui.base.BaseFragment
 import shpp.maslak.task3.App
+import shpp.maslak.task3.ui.fragments.main.contactDetail.ContactDetailFragmentArgs
 import shpp.maslak.task3.util.setContactPhoto
 import shpp.maslak.task3.util.viewModelCreator
 

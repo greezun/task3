@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.myContact.MyContactsFragment">
+    tools:context=".ui.fragments.main.myContact.MyContactsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/head"
@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.10"
         tools:ignore="MissingConstraints"
-        android:background="?attr/colorPrimary">
+        android:background="?attr/colorTopAppPart">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAddContact"

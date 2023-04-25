@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentMyContacts"
-        android:name="shpp.maslak.task3.ui.fragments.myContact.MyContactsFragment"
+        android:name="shpp.maslak.task3.ui.fragments.main.myContact.MyContactsFragment"
         android:label="@string/contacts"
         tools:layout="@layout/fragment_my_contacts">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentContactDetail"
-        android:name="shpp.maslak.task3.ui.fragments.contactDetail.ContactDetailFragment"
+        android:name="shpp.maslak.task3.ui.fragments.main.contactDetail.ContactDetailFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_contact_detail"
         >
@@ -37,12 +37,12 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentMyProfile"
-        android:name="shpp.maslak.task3.ui.fragments.myProfile.MyProfileFragment"
+        android:name="shpp.maslak.task3.ui.fragments.main.myProfile.MyProfileFragment"
         android:label="FragmentMyProfile"
         tools:layout="@layout/fragment_my_profile"/>
     <fragment
         android:id="@+id/fragmentPager"
-        android:name="shpp.maslak.task3.ui.fragments.pagerFragment.FragmentPager"
+        android:name="shpp.maslak.task3.ui.fragments.main.pagerFragment.FragmentPager"
         android:label="FragmentPager" />
     <action android:id="@+id/action_global_fragmentContactDetail" app:destination="@id/fragmentContactDetail" />
 </navigation>

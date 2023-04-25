@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Task3" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/grayText2</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -13,11 +13,13 @@
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
 
-        <item name="boxStrokeColor">@color/orange</item>
+
         <item name="mainButtonColor">@color/orange</item>
         <item name="secondaryButtonColor">@color/grayText</item>
         <item name="pressedButtonColor">@color/grayText2</item>
-        <item name="colorPrimaryDark">?attr/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorTopAppPart">@color/blue</item>
+        <item name="colorBottomAppPart">@color/white</item>
 
 
     </style>

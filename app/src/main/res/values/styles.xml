@@ -45,11 +45,11 @@
 
     <style name="ToolbarColoredBackArrow" >
         <item name="android:textColorSecondary">?attr/colorOnPrimary</item>
-        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:background">?attr/colorTopAppPart</item>
     </style>
 
 
-    <style name="TextInputEditLayout"  >
+    <style name="TextInputEditLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox"  >
         <item name="boxStrokeColor">@color/outline_custom_color</item>
         <item name="android:textColorHint">@color/grayText2</item>
         <item name="expandedHintEnabled">false</item>

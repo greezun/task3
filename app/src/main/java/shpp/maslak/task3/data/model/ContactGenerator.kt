@@ -10,7 +10,7 @@ class ContactGenerator {
     private val faker = Faker.instance()
 
     private fun generateContacts(): MutableStateFlow<List<Contact>> {
-        Log.d("myLog", "generate contacts")
+
         return MutableStateFlow(
             List(20) { index -> randomContact(id = index + 1L) }
         )
@@ -21,7 +21,7 @@ class ContactGenerator {
     }
 
     private fun randomContact(id: Long): Contact {
-        Log.i("myTag", "create contact")
+
         return Contact(
             id = id,
             avatar = IMAGES[id.rem(IMAGES.size).toInt()],

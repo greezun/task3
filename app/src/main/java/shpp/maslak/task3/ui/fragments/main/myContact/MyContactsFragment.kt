@@ -1,4 +1,4 @@
-package shpp.maslak.task3.ui.fragments.myContact
+package shpp.maslak.task3.ui.fragments.main.myContact
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -18,6 +18,7 @@ import shpp.maslak.task3.databinding.FragmentMyContactsBinding
 import shpp.maslak.task3.ui.base.BaseFragment
 import shpp.maslak.task3.App
 import shpp.maslak.task3.data.model.Contact
+import shpp.maslak.task3.ui.fragments.main.myContact.MyContactsFragmentDirections
 import shpp.maslak.task3.util.Constants
 import shpp.maslak.task3.util.viewModelCreator
 

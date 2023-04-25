@@ -1,4 +1,4 @@
-package shpp.maslak.task3.ui.fragments.myContact
+package shpp.maslak.task3.ui.fragments.main.myContact
 
 
 import android.graphics.Color
