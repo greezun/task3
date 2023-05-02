@@ -4,7 +4,8 @@ import kotlinx.coroutines.flow.StateFlow
 import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.data.model.ContactGenerator
 
-class RepositoryContacts: ContactManager {
+class RepositoryContacts ( ): ContactManager {
+
 
     private val contactProvider = ContactGenerator()
     private var _contactList = contactProvider.getContacts()

@@ -1,9 +1,9 @@
-package shpp.maslak.task3.util
+package shpp.maslak.task3.ui.fragments.main.myContact.adapter.diffUtill
 
 import androidx.recyclerview.widget.DiffUtil
 import shpp.maslak.task3.data.model.Contact
 
-class ContactDifUtil: DiffUtil.ItemCallback<Contact>() {
+class DiffUtilCallback: DiffUtil.ItemCallback<Contact>() {
     override fun areContentsTheSame(oldItem: Contact, newItem: Contact): Boolean {
         return oldItem.id == newItem.id
     }

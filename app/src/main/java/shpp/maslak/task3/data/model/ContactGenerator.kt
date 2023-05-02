@@ -1,7 +1,7 @@
 package shpp.maslak.task3.data.model
 
 
-import android.util.Log
+
 import com.github.javafaker.Faker
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -12,7 +12,7 @@ class ContactGenerator {
     private fun generateContacts(): MutableStateFlow<List<Contact>> {
 
         return MutableStateFlow(
-            List(20) { index -> randomContact(id = index + 1L) }
+            List(10) { index -> randomContact(id = index + 1L) }
         )
     }
 

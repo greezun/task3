@@ -18,11 +18,11 @@ import shpp.maslak.task3.util.viewModelCreator
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding::inflate) {
 
-    private val loginData = LoginData(App.instance.applicationContext)
+
     private var eMail = ""
     private var password = ""
     lateinit var buttonRegister: AppCompatButton
-    private val viewModel: SignUpViewModel by viewModelCreator { SignUpViewModel(loginData) }
+    private val viewModel: SignUpViewModel by viewModelCreator { SignUpViewModel(LoginData.instance) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -128,6 +128,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
                     val eMail = eMailField.text.toString()
                     val password = passwordField.text.toString()
                     val isCheckedCheckBox = checkBox.isChecked
+                    Log.d("myLog", "checkBox.isChecked ${checkBox.isChecked}" )
                     viewModel.saveLoginData(eMail, password, isCheckedCheckBox)
                     val intent =
                         Intent(App.instance.applicationContext, ContactActivity::class.java)

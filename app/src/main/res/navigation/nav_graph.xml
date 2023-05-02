@@ -44,5 +44,6 @@
         android:id="@+id/fragmentPager"
         android:name="shpp.maslak.task3.ui.fragments.main.pagerFragment.FragmentPager"
         android:label="FragmentPager" />
-    <action android:id="@+id/action_global_fragmentContactDetail" app:destination="@id/fragmentContactDetail" />
+    <action android:id="@+id/action_global_fragmentContactDetail"
+        app:destination="@id/fragmentContactDetail" />
 </navigation>

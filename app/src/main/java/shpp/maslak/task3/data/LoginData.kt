@@ -9,11 +9,12 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import shpp.maslak.task3.App
 
 
 private const val USER_LOGIN = "USER_LOGIN"
-private const val USER_PASSWORD ="USER_PASSWORD"
-private const val AUTOLOGIN ="AUTOLOGIN"
+private const val USER_PASSWORD = "USER_PASSWORD"
+private const val AUTOLOGIN = "AUTOLOGIN"
 private const val DATA_STORE_NAME = "userLogin"
 
 class LoginData(private val context: Context) {
@@ -44,6 +45,7 @@ class LoginData(private val context: Context) {
 
 
     companion object {
+        val instance:LoginData by lazy { LoginData(App.instance.applicationContext) }
         val USER_LOGIN_KEY = stringPreferencesKey(USER_LOGIN)
         val USER_PASSWORD_KEY = stringPreferencesKey(USER_PASSWORD)
         val AUTOLOGIN_KEY = booleanPreferencesKey(AUTOLOGIN)
@@ -53,7 +55,6 @@ class LoginData(private val context: Context) {
 
 
 
+    }
 
 
-
-}

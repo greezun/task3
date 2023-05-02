@@ -66,7 +66,6 @@ class SignUpViewModel(private val loginData: LoginData) : ViewModel() {
 
             }
         }
-
     }
 
 

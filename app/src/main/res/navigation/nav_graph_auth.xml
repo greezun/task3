@@ -2,10 +2,18 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph_auth"
-    app:startDestination="@id/signUpFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
         android:name="shpp.maslak.task3.ui.fragments.auth.signUp.SignUpFragment"
         android:label="SignUpFragment" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="shpp.maslak.task3.ui.fragments.auth.splash.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
 </navigation>

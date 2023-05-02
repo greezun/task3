@@ -2,6 +2,7 @@ package shpp.maslak.task3.ui.fragments.main.myContact
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -18,7 +19,8 @@ import shpp.maslak.task3.databinding.FragmentMyContactsBinding
 import shpp.maslak.task3.ui.base.BaseFragment
 import shpp.maslak.task3.App
 import shpp.maslak.task3.data.model.Contact
-import shpp.maslak.task3.ui.fragments.main.myContact.MyContactsFragmentDirections
+import shpp.maslak.task3.ui.fragments.main.myContact.adapter.actionListener.ContactActionListener
+import shpp.maslak.task3.ui.fragments.main.myContact.adapter.ContactAdapter
 import shpp.maslak.task3.util.Constants
 import shpp.maslak.task3.util.viewModelCreator
 
@@ -138,6 +140,7 @@ class MyContactsFragment :
             }
 
             override fun onContactHolder(contact: Contact) {
+                Log.d("ccc", "contact in $contact")
                 val direction =
                     MyContactsFragmentDirections.actionFragmentMyContactsToFragmentContactDetail(
                         contact.id
