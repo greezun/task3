@@ -18,6 +18,7 @@ import shpp.maslak.task3.databinding.FragmentMyContactsBinding
 import shpp.maslak.task3.ui.base.BaseFragment
 import shpp.maslak.task3.App
 import shpp.maslak.task3.data.model.Contact
+import shpp.maslak.task3.ui.fragments.pagerFragment.FragmentPagerDirections
 import shpp.maslak.task3.util.Constants
 import shpp.maslak.task3.util.viewModelCreator
 
@@ -138,7 +139,7 @@ class MyContactsFragment :
 
             override fun onContactHolder(contact: Contact) {
                 val direction =
-                    MyContactsFragmentDirections.actionFragmentMyContactsToFragmentContactDetail(
+                    FragmentPagerDirections.actionGlobalFragmentContactDetail(
                         contact.id
                     )
                 findNavController().navigate(direction)
