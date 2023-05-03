@@ -1,15 +1,18 @@
 package shpp.maslak.task3.data
 
+
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.data.model.ContactGenerator
 
 class RepositoryContacts ( ): ContactManager {
 
 
-    private val contactProvider = ContactGenerator()
-    private var _contactList = contactProvider.getContacts()
-    private val contactList: StateFlow<List<Contact>> = _contactList
+
+    private var _contactList = MutableStateFlow(ContactGenerator().getContacts())
+    private val contactList = _contactList.asStateFlow()
 
     override fun addContact(contact: Contact) {
         _contactList.value = _contactList.value.toMutableList().apply {

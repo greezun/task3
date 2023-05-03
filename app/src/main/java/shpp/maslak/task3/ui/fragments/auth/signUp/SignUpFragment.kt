@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.appcompat.widget.AppCompatButton
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -18,10 +17,6 @@ import shpp.maslak.task3.util.viewModelCreator
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding::inflate) {
 
-
-    private var eMail = ""
-    private var password = ""
-    lateinit var buttonRegister: AppCompatButton
     private val viewModel: SignUpViewModel by viewModelCreator { SignUpViewModel(LoginData.instance) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -128,15 +123,18 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
                     val eMail = eMailField.text.toString()
                     val password = passwordField.text.toString()
                     val isCheckedCheckBox = checkBox.isChecked
-                    Log.d("myLog", "checkBox.isChecked ${checkBox.isChecked}" )
                     viewModel.saveLoginData(eMail, password, isCheckedCheckBox)
                     val intent =
                         Intent(App.instance.applicationContext, ContactActivity::class.java)
                     startActivity(intent)
-
                 }
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("myLog", "SignUpFragment on pause")
     }
 
 

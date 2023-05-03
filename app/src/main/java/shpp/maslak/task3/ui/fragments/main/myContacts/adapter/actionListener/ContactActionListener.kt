@@ -1,4 +1,4 @@
-package shpp.maslak.task3.ui.fragments.main.myContact.adapter.actionListener
+package shpp.maslak.task3.ui.fragments.main.myContacts.adapter.actionListener
 
 import shpp.maslak.task3.data.model.Contact
 

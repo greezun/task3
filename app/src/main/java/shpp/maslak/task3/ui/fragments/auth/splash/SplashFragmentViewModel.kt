@@ -25,4 +25,6 @@ class SplashFragmentViewModel(loginData: LoginData): ViewModel() {
                 }
         }
     }
+
+
 }

@@ -17,6 +17,7 @@
         android:name=".App">
         <activity
             android:name=".ui.activities.AuthActivity"
+            android:noHistory="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

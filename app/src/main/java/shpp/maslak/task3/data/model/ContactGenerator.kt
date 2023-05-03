@@ -9,16 +9,12 @@ class ContactGenerator {
 
     private val faker = Faker.instance()
 
-    private fun generateContacts(): MutableStateFlow<List<Contact>> {
-
-        return MutableStateFlow(
-            List(10) { index -> randomContact(id = index + 1L) }
-        )
+    fun getContacts(): List<Contact> =   List(10) {
+             index -> randomContact(id = index + 1L)
     }
 
-    fun getContacts(): MutableStateFlow<List<Contact>>{
-        return  generateContacts()
-    }
+
+
 
     private fun randomContact(id: Long): Contact {
 

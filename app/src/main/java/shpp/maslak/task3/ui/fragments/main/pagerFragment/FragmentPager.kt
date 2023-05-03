@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import shpp.maslak.task3.databinding.FragmentPagerBinding
 import shpp.maslak.task3.ui.base.BaseFragment
-import shpp.maslak.task3.ui.fragments.main.myContact.MyContactsFragment
+import shpp.maslak.task3.ui.fragments.main.myContacts.MyContactsFragment
 import shpp.maslak.task3.ui.fragments.main.myProfile.MyProfileFragment
 import shpp.maslak.task3.util.Constants
 

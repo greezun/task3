@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentMyContacts"
-        android:name="shpp.maslak.task3.ui.fragments.main.myContact.MyContactsFragment"
+        android:name="shpp.maslak.task3.ui.fragments.main.myContacts.MyContactsFragment"
         android:label="@string/contacts"
         tools:layout="@layout/fragment_my_contacts">
         <action

@@ -7,9 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import shpp.maslak.task3.App
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import shpp.maslak.task3.R
 import shpp.maslak.task3.data.LoginData
 import shpp.maslak.task3.ui.activities.ContactActivity
@@ -17,8 +21,6 @@ import shpp.maslak.task3.util.viewModelCreator
 
 
 class SplashFragment : Fragment() {
-
-
     private val viewModel: SplashFragmentViewModel by viewModelCreator {
         SplashFragmentViewModel(LoginData.instance)
     }
@@ -34,28 +36,36 @@ class SplashFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         observeAutoLogin()
-
     }
 
-    private fun goToNext(isAutologin: Boolean) {
-        Log.d("myLog", "autologin $isAutologin")
+    private suspend fun goToNext(isAutologin: Boolean) {
+        delay(500)
         if (isAutologin) {
             val intent =
-                Intent(App.instance.applicationContext, ContactActivity::class.java)
+                Intent(requireContext(), ContactActivity::class.java)
+            Log.d("myLog", "go to myProfile")
             startActivity(intent)
+
         } else {
+            Log.d("myLog", "signIn")
             val direction = SplashFragmentDirections.actionSplashFragmentToSignUpFragment()
             findNavController().navigate(direction)
         }
+
     }
 
     private fun observeAutoLogin() {
-        lifecycleScope.launchWhenCreated {
-            viewModel.isAutoLogin.collect { isAutologin ->
-                goToNext(isAutologin)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.isAutoLogin.collectLatest { isAutologin ->
+                    goToNext(isAutologin)
+                }
             }
         }
     }
 
-
+    override fun onPause() {
+        super.onPause()
+        Log.d("myLog", "SplashFragment on pause")
+    }
 }

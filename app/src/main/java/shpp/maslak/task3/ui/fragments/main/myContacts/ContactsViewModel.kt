@@ -1,4 +1,4 @@
-package shpp.maslak.task3.ui.fragments.main.myContact
+package shpp.maslak.task3.ui.fragments.main.myContacts
 
 
 import androidx.lifecycle.ViewModel
