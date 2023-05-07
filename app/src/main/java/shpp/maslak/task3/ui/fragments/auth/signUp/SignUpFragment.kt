@@ -2,22 +2,21 @@ package shpp.maslak.task3.ui.fragments.auth.signUp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import shpp.maslak.task3.App
-import shpp.maslak.task3.data.LoginData
 import shpp.maslak.task3.databinding.FragmentSignUpBinding
 import shpp.maslak.task3.ui.activities.ContactActivity
 import shpp.maslak.task3.ui.base.BaseFragment
-import shpp.maslak.task3.util.viewModelCreator
 
+@AndroidEntryPoint
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding::inflate) {
 
-    private val viewModel: SignUpViewModel by viewModelCreator { SignUpViewModel(LoginData.instance) }
+    private val viewModel  by viewModels<SignUpViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -125,17 +124,11 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
                     val isCheckedCheckBox = checkBox.isChecked
                     viewModel.saveLoginData(eMail, password, isCheckedCheckBox)
                     val intent =
-                        Intent(App.instance.applicationContext, ContactActivity::class.java)
+                        Intent(requireContext(), ContactActivity::class.java)
                     startActivity(intent)
                 }
             }
         }
     }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("myLog", "SignUpFragment on pause")
-    }
-
 
 }

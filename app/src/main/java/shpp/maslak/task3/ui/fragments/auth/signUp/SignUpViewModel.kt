@@ -1,20 +1,21 @@
 package shpp.maslak.task3.ui.fragments.auth.signUp
 
-import android.util.Log
+
 import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.data.LoginData
 import shpp.maslak.task3.util.Constants
+import javax.inject.Inject
 
-
-class SignUpViewModel(private val loginData: LoginData) : ViewModel() {
+@HiltViewModel
+class SignUpViewModel @Inject constructor(private val loginData: LoginData) : ViewModel() {
 
     private val coroutineScope = CoroutineScope(Job())
 
@@ -34,7 +35,6 @@ class SignUpViewModel(private val loginData: LoginData) : ViewModel() {
         viewModelScope.launch {
             loginData.eMailFlow.collect {
                 _userEMail.value = it
-                Log.d("myLog", "emailFlow $it" )
             }
 
         }
@@ -42,7 +42,6 @@ class SignUpViewModel(private val loginData: LoginData) : ViewModel() {
         viewModelScope.launch {
             loginData.passwordFlow.collect {
                 _userPassword.value = it
-                Log.d("myLog", "passwordFlow $it" )
             }
         }
     }
@@ -51,16 +50,15 @@ class SignUpViewModel(private val loginData: LoginData) : ViewModel() {
     fun validPassword(password: String) {
 
         _passwordErrorMessage.value = setPasswordErrorMessage(password)
-        Log.d("myTag","passwordMessage ${_passwordErrorMessage.value}" )
+
     }
 
     fun validEMail(eMail: String) {
         _eMailErrorMessage.value = setEMailErrorMessage(eMail)
-        Log.d("myTag","email message ${_eMailErrorMessage.value}" )
     }
 
-     fun saveLoginData(eMail: String, password: String, isCheckedCheckBox:Boolean){
-        if(isCheckedCheckBox) {
+    fun saveLoginData(eMail: String, password: String, isCheckedCheckBox: Boolean) {
+        if (isCheckedCheckBox) {
             coroutineScope.launch {
                 loginData.storeLoginData(eMail, password, true)
 

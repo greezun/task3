@@ -7,23 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.R
-import shpp.maslak.task3.data.LoginData
 import shpp.maslak.task3.ui.activities.ContactActivity
-import shpp.maslak.task3.util.viewModelCreator
 
 
+@AndroidEntryPoint
 class SplashFragment : Fragment() {
-    private val viewModel: SplashFragmentViewModel by viewModelCreator {
-        SplashFragmentViewModel(LoginData.instance)
-    }
+    private val viewModel by viewModels<SplashFragmentViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,

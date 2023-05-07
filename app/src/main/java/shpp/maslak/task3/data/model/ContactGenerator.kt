@@ -3,8 +3,9 @@ package shpp.maslak.task3.data.model
 
 
 import com.github.javafaker.Faker
-import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Singleton
 
+@Singleton
 class ContactGenerator {
 
     private val faker = Faker.instance()
@@ -12,8 +13,6 @@ class ContactGenerator {
     fun getContacts(): List<Contact> =   List(10) {
              index -> randomContact(id = index + 1L)
     }
-
-
 
 
     private fun randomContact(id: Long): Contact {

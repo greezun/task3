@@ -37,6 +37,7 @@
                 android:layout_marginStart="@dimen/marginMin"
                 android:layout_gravity="center_vertical"
                 android:button="@drawable/checkbox_item"
+                android:clickable="false"
                 android:checked="false"
                 android:visibility="gone"
                 />

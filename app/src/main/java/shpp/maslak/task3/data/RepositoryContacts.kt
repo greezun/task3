@@ -6,10 +6,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.data.model.ContactGenerator
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RepositoryContacts ( ): ContactManager {
-
-
+@Singleton
+class RepositoryContacts @Inject constructor(): ContactManager {
 
     private var _contactList = MutableStateFlow(ContactGenerator().getContacts())
     private val contactList = _contactList.asStateFlow()

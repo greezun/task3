@@ -7,18 +7,18 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import shpp.maslak.task3.App
-
+import javax.inject.Inject
+import javax.inject.Singleton
 
 private const val USER_LOGIN = "USER_LOGIN"
 private const val USER_PASSWORD = "USER_PASSWORD"
 private const val AUTOLOGIN = "AUTOLOGIN"
 private const val DATA_STORE_NAME = "userLogin"
-
-class LoginData(private val context: Context) {
-
+@Singleton
+class LoginData @Inject constructor( @ApplicationContext private val context: Context) {
 
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = DATA_STORE_NAME)
 
@@ -45,7 +45,6 @@ class LoginData(private val context: Context) {
 
 
     companion object {
-        val instance:LoginData by lazy { LoginData(App.instance.applicationContext) }
         val USER_LOGIN_KEY = stringPreferencesKey(USER_LOGIN)
         val USER_PASSWORD_KEY = stringPreferencesKey(USER_PASSWORD)
         val AUTOLOGIN_KEY = booleanPreferencesKey(AUTOLOGIN)

@@ -3,15 +3,17 @@ package shpp.maslak.task3.ui.fragments.main.myContacts
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.data.ContactManager
 import shpp.maslak.task3.data.model.Contact
+import javax.inject.Inject
 
-
-class ContactsViewModel(private val manager: ContactManager) : ViewModel() {
+@HiltViewModel
+class ContactsViewModel @Inject constructor( private val manager: ContactManager) : ViewModel() {
 
 
     private var _contactList = MutableStateFlow<List<Contact>>(emptyList())

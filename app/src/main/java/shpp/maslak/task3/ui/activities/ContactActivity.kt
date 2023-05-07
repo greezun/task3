@@ -4,10 +4,11 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import dagger.hilt.android.AndroidEntryPoint
 import shpp.maslak.task3.R
 import shpp.maslak.task3.databinding.ActivityContactBinding
 import shpp.maslak.task3.ui.base.BaseActivity
-
+@AndroidEntryPoint
 class ContactActivity : BaseActivity<ActivityContactBinding>(ActivityContactBinding::inflate)
 {
 

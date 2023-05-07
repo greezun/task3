@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -13,30 +14,25 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.databinding.FragmentMyContactsBinding
 import shpp.maslak.task3.ui.base.BaseFragment
-import shpp.maslak.task3.App
 import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.ui.fragments.main.myContacts.adapter.actionListener.ContactActionListener
 import shpp.maslak.task3.ui.fragments.main.myContacts.adapter.ContactAdapter
 
-
 import shpp.maslak.task3.util.Constants
-import shpp.maslak.task3.util.viewModelCreator
 
 
+@AndroidEntryPoint
 class MyContactsFragment :
     BaseFragment<FragmentMyContactsBinding>(FragmentMyContactsBinding::inflate) {
 
     private lateinit var buttonAddContact: AppCompatTextView
     private lateinit var buttonDelete: AppCompatImageView
     private val adapter: ContactAdapter by lazy { createAdapter() }
-    private val contactViewModel: ContactsViewModel by viewModelCreator {
-        ContactsViewModel(
-            App.manager
-        )
-    }
+    private val contactViewModel by viewModels<ContactsViewModel>()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +50,7 @@ class MyContactsFragment :
     }
 
     private fun listenSwipe() {
-        val callBack =  getSwipeCallBack()
+        val callBack = getSwipeCallBack()
         val itemTouchHelper = ItemTouchHelper(callBack)
         itemTouchHelper.attachToRecyclerView(binding.recyclerView)
 
@@ -96,7 +92,10 @@ class MyContactsFragment :
                 recyclerView: RecyclerView,
                 viewHolder: RecyclerView.ViewHolder
             ): Int {
-                return if (adapter.isMultiselectMode) 0 else super.getSwipeDirs(recyclerView, viewHolder)
+                return if (adapter.isMultiselectMode) 0 else super.getSwipeDirs(
+                    recyclerView,
+                    viewHolder
+                )
             }
         }
 
@@ -140,7 +139,9 @@ class MyContactsFragment :
                 showDeleteMessage(index, contact)
             }
 
-            override fun onContactHolder(contact: Contact) {                val direction = MyContactsFragmentDirections.actionGlobalFragmentContactDetail(contact.id)
+            override fun onContactHolder(contact: Contact) {
+                val direction =
+                    MyContactsFragmentDirections.actionGlobalFragmentContactDetail(contact.id)
 
                 findNavController().navigate(direction)
             }
