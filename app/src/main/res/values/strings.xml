@@ -13,6 +13,9 @@
     <string name="contacts">Contacts</string>
     <string name="profile">Profile</string>
 
+    <string name="title_my_contacts">My contacts</string>
+    <string name="title_my_profile">My profile</string>
+
 
     <string name="password">Password</string>
     <string name="fill_profile">Fill out the profile and go to the application!</string>
@@ -33,5 +36,6 @@
     <string name="regex_lower_case" translatable="false">.*[a-z].*</string>
     <string name="regex_upper_case" translatable="false">.*[A-Z].*</string>
     <string name="regex_special_symbol" translatable="false">.*[@#\$%^&amp;+=].*</string>
+
 
 </resources>

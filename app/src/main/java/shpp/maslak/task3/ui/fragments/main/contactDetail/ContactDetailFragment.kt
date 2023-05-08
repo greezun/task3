@@ -24,7 +24,7 @@ class ContactDetailFragment: BaseFragment<FragmentContactDetailBinding>(Fragment
         setObservers()
 
     }
-    override fun setObservers() {
+     private fun setObservers() {
         lifecycleScope.launch{
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.contactsFlow.collect{ contacts ->
@@ -43,9 +43,7 @@ class ContactDetailFragment: BaseFragment<FragmentContactDetailBinding>(Fragment
         }
     }
 
-    override fun setListeners() {
 
-    }
 
 
 }

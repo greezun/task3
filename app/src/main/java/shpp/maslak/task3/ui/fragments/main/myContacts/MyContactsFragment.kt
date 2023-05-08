@@ -16,13 +16,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import shpp.maslak.task3.R
 import shpp.maslak.task3.databinding.FragmentMyContactsBinding
 import shpp.maslak.task3.ui.base.BaseFragment
 import shpp.maslak.task3.data.model.Contact
+import shpp.maslak.task3.ui.activities.ContactActivity
+
 import shpp.maslak.task3.ui.fragments.main.myContacts.adapter.actionListener.ContactActionListener
 import shpp.maslak.task3.ui.fragments.main.myContacts.adapter.ContactAdapter
 
 import shpp.maslak.task3.util.Constants
+
 
 
 @AndroidEntryPoint
@@ -40,10 +44,17 @@ class MyContactsFragment :
         bindFields()
         setObservers()
         setListeners()
+
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as ContactActivity).supportActionBar?.title = getString(R.string.title_my_contacts)
     }
 
 
-    override fun setListeners() {
+     private fun setListeners() {
         onSelectedContactDeleteListener()
         listenSwipe()
 
@@ -70,6 +81,10 @@ class MyContactsFragment :
             buttonDelete = ivBasketMultiselect
             recyclerView.layoutManager = manager
             recyclerView.adapter = adapter
+
+
+
+
         }
     }
 
@@ -102,7 +117,7 @@ class MyContactsFragment :
     }
 
 
-    override fun setObservers() {
+    private fun setObservers() {
         multiselectModeObserver()
         contactsListObserver()
     }
@@ -142,7 +157,6 @@ class MyContactsFragment :
             override fun onContactHolder(contact: Contact) {
                 val direction =
                     MyContactsFragmentDirections.actionGlobalFragmentContactDetail(contact.id)
-
                 findNavController().navigate(direction)
             }
 

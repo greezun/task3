@@ -24,7 +24,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         setObservers()
     }
 
-    override fun setObservers() {
+    fun setObservers() {
         observeEmailErrorMessage()
         observePasswordErrorMessage()
         observeUserLoginData()
@@ -50,7 +50,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         }
     }
 
-    override fun setListeners() {
+     fun setListeners() {
         emailFocusListener()
         passwordFocusListener()
         submitButtonListener()

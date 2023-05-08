@@ -18,16 +18,16 @@ class ContactActivity : BaseActivity<ActivityContactBinding>(ActivityContactBind
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(binding.appbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
         val navHost = supportFragmentManager.findFragmentById(R.id.fragmentContainer) as NavHostFragment
         navController = navHost.navController
-
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
 
 
 

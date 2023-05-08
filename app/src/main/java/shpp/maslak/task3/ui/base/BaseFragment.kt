@@ -29,6 +29,5 @@ abstract class BaseFragment<VBinding : ViewBinding>(
         super.onDestroyView()
     }
 
-    abstract fun setObservers()
-    abstract fun setListeners()
+
 }
