@@ -2,13 +2,20 @@ package shpp.maslak.task3.ui.fragments.auth.signUp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.http.Body
+import retrofit2.http.POST
+import shpp.maslak.task3.ServerApi
+import shpp.maslak.task3.SignUpRequestBody
+import shpp.maslak.task3.SignUpResponseBody
 import shpp.maslak.task3.databinding.FragmentSignUpBinding
 import shpp.maslak.task3.ui.activities.ContactActivity
 import shpp.maslak.task3.ui.base.BaseFragment
@@ -118,14 +125,18 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         with(binding) {
             buttonSignUp.setOnClickListener {
                 clearFocuses()
-                if (isFieldsValid()) {
-                    val eMail = eMailField.text.toString()
-                    val password = passwordField.text.toString()
-                    val isCheckedCheckBox = checkBox.isChecked
-                    viewModel.saveLoginData(eMail, password, isCheckedCheckBox)
-                    val intent =
-                        Intent(requireContext(), ContactActivity::class.java)
-                    startActivity(intent)
+//                if (isFieldsValid()) {
+//                    val eMail = eMailField.text.toString()
+//                    val password = passwordField.text.toString()
+//                    val isCheckedCheckBox = checkBox.isChecked
+//                    viewModel.saveLoginData(eMail, password, isCheckedCheckBox)
+//                    val intent =
+//                        Intent(requireContext(), ContactActivity::class.java)
+//                    startActivity(intent)
+//                }
+                lifecycleScope.launch(Dispatchers.IO){
+                    val response = ServerApi.api.signUp(ServerApi.requestBody)
+                    Log.d("SignUpFragment", response.toString())
                 }
             }
         }

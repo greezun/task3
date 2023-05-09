@@ -6,8 +6,10 @@ import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import shpp.maslak.task3.data.model.User
 import shpp.maslak.task3.util.Constants
@@ -23,45 +25,68 @@ data class SignUpResponseBody(
     val refreshToken: String
 )
 
-interface UsersApi{
-
-    @POST("users")
+interface UsersApi {
+    @POST("login")
+    @Headers("Content-type: application/json")
     suspend fun signUp(@Body body: SignUpRequestBody): SignUpResponseBody
 }
 
+fun main() = runBlocking {
+    println("start")
+    val loggingInterceptor = HttpLoggingInterceptor()
+        .setLevel(HttpLoggingInterceptor.Level.BODY)
+    val client = OkHttpClient.Builder()
+        .addInterceptor(loggingInterceptor)
+        .build()
+    val moshi = Moshi.Builder()
+
+        .build()
+    val moshiConverterFactory = MoshiConverterFactory.create(moshi)
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl(Constants.BASE_URL)
+        .client(client)
+        .addConverterFactory(moshiConverterFactory)
+        .build()
+
+    val api = retrofit.create(UsersApi::class.java)
+    println(api)
 
 
-    fun main() = runBlocking{
-        println("start")
-        val loggingInterceptor = HttpLoggingInterceptor()
-            .setLevel(HttpLoggingInterceptor.Level.BODY)
-        val client = OkHttpClient.Builder()
-            .addInterceptor(loggingInterceptor)
-            .build()
-        val moshi = Moshi.Builder()
+    val requestBody = SignUpRequestBody(
+        email = "test5@email",
+        password = "123"
+    )
+    println(requestBody)
 
-            .build()
-        val moshiConverterFactory = MoshiConverterFactory.create(moshi)
+    val response = api.signUp(requestBody)
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
-            .client(client)
-            .addConverterFactory(moshiConverterFactory)
-            .build()
+    println(response)
+}
 
-        val api = retrofit.create(UsersApi::class.java)
-        println(api)
+object ServerApi {
+    private val loggingInterceptor = HttpLoggingInterceptor()
+        .setLevel(HttpLoggingInterceptor.Level.BODY)
+    private val client = OkHttpClient.Builder()
+        .addInterceptor(loggingInterceptor)
+        .build()
+    private val moshi: Moshi = Moshi.Builder()
 
+        .build()
+//    val moshiConverterFactory = MoshiConverterFactory.create(moshi)
 
-        val requestBody = SignUpRequestBody(
-            email = "test5@email",
-            password = "123"
-        )
-        println(requestBody)
+    val retrofit = Retrofit.Builder()
+        .client(client)
+        .baseUrl(Constants.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 
-        val response = api.signUp(requestBody)
+    val api = retrofit.create(UsersApi::class.java)
 
-        println(response)
+    val requestBody = SignUpRequestBody(
+        email = "test5@email",
+        password = "123"
+    )
 
-    }
-
+//    val response = api.signUp(requestBody)
+}
