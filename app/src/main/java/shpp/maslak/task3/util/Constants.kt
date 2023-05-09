@@ -18,4 +18,6 @@ object Constants {
     const val PASSWORD_MIN_SIZE = 8
     const val PASSWORD_MAX_SIZE = 16
 
+    const val BASE_URL = "http://178.63.9.114:7777/api/"
+
 }

@@ -28,7 +28,7 @@ class ContactDetailFragment :
     }
 
     private fun observeContactList() {
-        lifecycleScope.launch(Dispatchers.IO) {
+        lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.contactsFlow.collect { contacts ->
                     val contact = contacts.firstOrNull {

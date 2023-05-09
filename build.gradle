@@ -3,9 +3,13 @@
 
 buildscript {
     ext.hilt_version = "2.44"
+    ext.retrofit_version = "2.9.0"
+    ext.okhttp_version = "4.11.0"
+
 
     repositories {
         google()
+        mavenCentral()
     }
     dependencies {
 
