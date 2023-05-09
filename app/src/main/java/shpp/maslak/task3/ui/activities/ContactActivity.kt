@@ -9,12 +9,9 @@ import shpp.maslak.task3.R
 import shpp.maslak.task3.databinding.ActivityContactBinding
 import shpp.maslak.task3.ui.base.BaseActivity
 @AndroidEntryPoint
-class ContactActivity : BaseActivity<ActivityContactBinding>(ActivityContactBinding::inflate)
-{
+class ContactActivity : BaseActivity<ActivityContactBinding>(ActivityContactBinding::inflate){
 
     private lateinit var navController: NavController
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(binding.appbar)
