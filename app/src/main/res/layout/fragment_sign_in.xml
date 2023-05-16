@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorTopAppPart"
+    tools:ignore="MissingDefaultResource">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/acquaintance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/authTopMargin"
+        android:text="@string/greeting"
+        android:textAppearance="@style/Text.PrimaryLight"
+        android:textSize="@dimen/headlineSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/fill_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginMin"
+        android:text="@string/offer_to_enter_data"
+        android:textAppearance="@style/Text.Secondary"
+        android:textSize="@dimen/titleSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/acquaintance" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordContainer"
+        style="@style/TextInputEditLayout"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:paddingHorizontal="@dimen/marginMid"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/grayText2"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordField"
+            style="@style/TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorTopAppPart"
+            android:inputType="textPassword"
+            android:maxLength="@integer/passwordMaxLength"
+            tools:ignore="VisualLintTextFieldSize,TextSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/eMailContainer"
+        style="@style/TextInputEditLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/marginMid"
+        tools:ignore="MissingConstraints">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/eMailField"
+            style="@style/TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorTopAppPart"
+            android:hint="@string/e_mail"
+            android:inputType="textEmailAddress"
+            tools:ignore="VisualLintTextFieldSize,TextSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/field_block"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginLarge"
+        android:orientation="vertical"
+        app:constraint_referenced_ids="eMailContainer, passwordContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fill_profile" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginMid"
+        android:button="@drawable/checkbox"
+        android:checked="true"
+        android:paddingStart="@dimen/marginMin"
+        android:text="@string/remember_me"
+        android:textColor="@color/grayText2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordContainer"
+        tools:ignore="RtlSymmetry" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonSignUp"
+        style="@style/ButtonRegisterStyle"
+        android:layout_marginStart="@dimen/marginMid"
+        android:layout_marginEnd="@dimen/marginMid"
+        android:layout_marginBottom="@dimen/marginMid"
+        android:background="@drawable/button_login_and_register"
+        android:text="@string/login"
+        android:textColor="?attr/colorOnPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/enter_block"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UsingOnClickInXml,TextSizeCheck,VisualLintButtonSize" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/have_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/don_t_have_account"
+        android:textAppearance="@style/Text.Secondary"
+        android:textSize="@dimen/titleSmall"
+        tools:ignore="MissingConstraints,VisualLintOverlap" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/signIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/sign_in"
+        android:textAppearance="@style/Text.Secondary"
+        android:textSize="@dimen/titleSmall"
+        android:textColor="@color/clickable_text_color"
+        tools:ignore="MissingConstraints,TouchTargetSizeCheck,VisualLintOverlap" />
+
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/enter_block"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/marginMid"
+        android:layout_marginBottom="@dimen/marginMid"
+        app:constraint_referenced_ids="have_account, signIn"
+        app:flow_horizontalGap="@dimen/marginMid"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

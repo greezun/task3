@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorTopAppPart">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLineStart"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.96" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideLineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.98" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewAvatar"
+        android:layout_width="@dimen/mainAvatarSize"
+        android:layout_height="@dimen/mainAvatarSize"
+        android:background="@color/grayText2"
+        app:cardCornerRadius="@dimen/main_avatar_radius"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideLineTop" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_photo"
+        android:layout_marginStart="@dimen/marginMid"
+        app:layout_constraintBottom_toBottomOf="@id/cardViewAvatar"
+        app:layout_constraintTop_toTopOf="@id/cardViewAvatar"
+        app:layout_constraintStart_toEndOf="@id/cardViewAvatar"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewProfileData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginLarge"
+        android:text="@string/your_profile_data"
+        android:textAppearance="@style/Text.PrimaryLight"
+        android:textSize="@dimen/headlineSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardViewAvatar" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewFill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginMin"
+        android:text="@string/fill_profile"
+        android:textAppearance="@style/Text.Secondary"
+        android:textSize="@dimen/titleSmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewProfileData" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutUserName"
+        style="@style/TextInputEditLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/user_name"
+        android:paddingHorizontal="@dimen/marginMid"
+        app:endIconTint="@color/grayText2"
+        android:layout_marginTop="@dimen/marginLarge"
+        app:layout_constraintTop_toBottomOf="@id/textViewFill" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditTextUerName"
+            style="@style/TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorTopAppPart"
+            android:inputType="text"
+            android:maxLength="@integer/passwordMaxLength"
+             />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutPhone"
+        style="@style/TextInputEditLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/marginMid"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutUserName"
+      >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/eMailField"
+            style="@style/TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorTopAppPart"
+            android:hint="@string/phone"
+            android:inputType="phone"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonCansel"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/secondaryButtonWeight"
+
+        android:textAllCaps="false"
+        android:text="@string/cansel"
+        android:textAppearance="@style/Text.PrimaryLight"
+        android:background="@drawable/button_cansel_background"
+        android:textSize="@dimen/titleMedium"
+        android:layout_marginBottom="@dimen/marginMid"
+       app:layout_constraintBottom_toTopOf="@id/buttonForward"
+        app:layout_constraintStart_toStartOf="@id/guideLineStart"
+        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonForward"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/mainButtonHeight"
+        style="@style/MainButtonStyle"
+        android:text="@string/forward"
+        android:textAppearance="@style/Text.PrimaryLight"
+        android:textSize="@dimen/titleMedium"
+        android:background="@drawable/button_main_background"
+        app:layout_constraintStart_toStartOf="@id/guideLineStart"
+        app:layout_constraintEnd_toEndOf="@id/guideLineEnd"
+        app:layout_constraintBottom_toTopOf="@id/guideLineBottom"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

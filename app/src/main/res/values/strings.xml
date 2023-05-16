@@ -36,6 +36,12 @@
     <string name="regex_lower_case" translatable="false">.*[a-z].*</string>
     <string name="regex_upper_case" translatable="false">.*[A-Z].*</string>
     <string name="regex_special_symbol" translatable="false">.*[@#\$%^&amp;+=].*</string>
+    <string name="greeting">Hello!</string>
+    <string name="offer_to_enter_data">Enter your email and password below</string>
+    <string name="don_t_have_account">Don’t have account?</string>
+    <string name="your_profile_data">Your profile data</string>
+    <string name="forward">forward</string>
+    <string name="cansel">Cansel</string>
 
 
 </resources>
