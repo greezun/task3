@@ -14,5 +14,5 @@ data class User(
     val instagram: String?,
     val twitter: String?,
     val linkedin: String?,
-    val image: File
+    val image: File?
 )

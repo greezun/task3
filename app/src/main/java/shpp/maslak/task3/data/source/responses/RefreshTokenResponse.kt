@@ -1,4 +1,6 @@
 package shpp.maslak.task3.data.source.responses
 
-class RefreshTokenResponse {
-}
+data class RefreshTokenResponse(
+    val accessToken: String,
+    val refreshToken: String
+)
