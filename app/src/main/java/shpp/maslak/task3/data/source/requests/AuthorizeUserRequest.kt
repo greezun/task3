@@ -4,3 +4,4 @@ data class AuthorizeUserRequest(
     var email:String,
     var password: String
 )
+

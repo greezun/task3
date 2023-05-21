@@ -6,6 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import shpp.maslak.task3.util.Constants
 
+// ніде не використовується
 object RetrofitClient {
 
     private val loggingInterceptor = HttpLoggingInterceptor()

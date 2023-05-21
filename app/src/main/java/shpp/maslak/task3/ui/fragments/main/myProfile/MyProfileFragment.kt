@@ -14,7 +14,7 @@ import shpp.maslak.task3.ui.base.BaseFragment
 @AndroidEntryPoint
 class MyProfileFragment: BaseFragment<FragmentMyProfileBinding>(FragmentMyProfileBinding::inflate) {
 
-    val viewModel: MyProfileViewModel by viewModels()
+    private val viewModel: MyProfileViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,7 +30,7 @@ class MyProfileFragment: BaseFragment<FragmentMyProfileBinding>(FragmentMyProfil
 //                )
 
                 viewModel.authorizeUser(
-                    email = "test10@email",
+                    email = "test11@email",
                     password = "123"
                 )
 

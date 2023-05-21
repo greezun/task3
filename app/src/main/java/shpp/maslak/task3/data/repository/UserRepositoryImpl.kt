@@ -11,4 +11,8 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun authorizeUser(email: String, password: String): UserResponseBody? {
         return remoteDataSource.authorizeUser(email, password)
     }
+
+    override suspend fun createNewUser(email: String, password: String): UserResponseBody? {
+        return remoteDataSource.createNewUser(email, password)
+    }
 }

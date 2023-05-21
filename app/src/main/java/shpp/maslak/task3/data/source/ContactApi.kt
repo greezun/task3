@@ -7,19 +7,19 @@ import shpp.maslak.task3.data.model.User
 import shpp.maslak.task3.data.source.requests.AddContactRequest
 import shpp.maslak.task3.data.source.requests.AuthorizeUserRequest
 import shpp.maslak.task3.data.source.requests.EditUserRequest
+import shpp.maslak.task3.data.source.requests.NewUserRequest
 import shpp.maslak.task3.data.source.responses.*
 
 
 interface ContactApi {
-    @FormUrlEncoded
+
     @POST("login")
     suspend fun authorizeUser(
-        @Field("email") email: String,
-        @Field("password") password: String
+        @Body body: NewUserRequest
     ): Response<UserResponse>
 
     @POST("users")
-    suspend fun createNewUser(@Body body: User): UserResponse
+    suspend fun createNewUser(@Body body: NewUserRequest): Response<UserResponse>
 
     @POST("login")
     suspend fun logIn(@Body body: AuthorizeUserRequest): UserResponse

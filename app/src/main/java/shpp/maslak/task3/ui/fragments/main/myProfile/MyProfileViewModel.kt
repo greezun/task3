@@ -16,7 +16,7 @@ class MyProfileViewModel @Inject constructor(
 
     fun authorizeUser(email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = userRepository.authorizeUser(email, password)
+            val response = userRepository.createNewUser(email, password)
 
             Log.d("MyProfileViewModel", "response: ${response?.user}")
         }
