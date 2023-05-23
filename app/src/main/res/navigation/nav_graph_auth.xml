@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="shpp.maslak.task3.ui.fragments.auth.signUp.SignUpFragment"
-        android:label="SignUpFragment" />
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="shpp.maslak.task3.ui.fragments.auth.splash.SplashFragment"
@@ -19,4 +23,8 @@
             app:popUpToInclusive="true"
            />
     </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="shpp.maslak.task3.ui.fragments.auth.signIn.SignInFragment"
+        android:label="SignInFragment" />
 </navigation>

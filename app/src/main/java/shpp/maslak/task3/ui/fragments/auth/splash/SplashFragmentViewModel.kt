@@ -3,6 +3,8 @@ package shpp.maslak.task3.ui.fragments.auth.splash
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDirections
+import androidx.navigation.NavHostController
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -27,7 +29,11 @@ class SplashFragmentViewModel @Inject constructor(loginData: LoginData): ViewMod
 
                 }
         }
+
+
     }
+
+
 
 
 }

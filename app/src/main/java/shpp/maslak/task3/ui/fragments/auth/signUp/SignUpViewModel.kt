@@ -1,21 +1,29 @@
 package shpp.maslak.task3.ui.fragments.auth.signUp
 
 
+import android.util.Log
 import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.data.LoginData
+import shpp.maslak.task3.data.model.User
+import shpp.maslak.task3.domain.repository.UserRepository
 import shpp.maslak.task3.util.Constants
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel @Inject constructor(private val loginData: LoginData) : ViewModel() {
+class SignUpViewModel @Inject constructor(
+    private val loginData: LoginData,
+    private val userRepository: UserRepository
+) : ViewModel() {
 
     private val coroutineScope = CoroutineScope(Job())
 
@@ -30,6 +38,9 @@ class SignUpViewModel @Inject constructor(private val loginData: LoginData) : Vi
 
     private val _userPassword = MutableStateFlow("")
     val userPassword: StateFlow<String> = _userPassword
+
+    private val _user = MutableStateFlow<User?>(null)
+    val user = _user.asStateFlow()
 
     init {
         viewModelScope.launch {
@@ -62,6 +73,23 @@ class SignUpViewModel @Inject constructor(private val loginData: LoginData) : Vi
             coroutineScope.launch {
                 loginData.storeLoginData(eMail, password, true)
 
+            }
+        }
+    }
+
+    fun authorizeUser(email: String, password: String) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = userRepository.authorizeUser(email, password)
+
+            if (response != null) {
+                val accessToken = response.accessToken
+                val refreshToken = response.accessToken
+                _user.value = response.user
+//            dataStore.storeTokens(accessToken!!, refreshToken!!)
+
+
+                Log.d("MyProfileViewModel", "response: $response")
             }
         }
     }

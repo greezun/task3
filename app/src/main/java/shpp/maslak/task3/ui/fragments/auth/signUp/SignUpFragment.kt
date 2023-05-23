@@ -2,11 +2,14 @@ package shpp.maslak.task3.ui.fragments.auth.signUp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.databinding.FragmentSignUpBinding
@@ -16,7 +19,7 @@ import shpp.maslak.task3.ui.base.BaseFragment
 @AndroidEntryPoint
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding::inflate) {
 
-    private val viewModel  by viewModels<SignUpViewModel>()
+    private val viewModel by viewModels<SignUpViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,10 +53,18 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         }
     }
 
-     private fun setListeners() {
+    private fun setListeners() {
         emailFocusListener()
         passwordFocusListener()
         submitButtonListener()
+        textViewSignInListener()
+    }
+
+    private fun textViewSignInListener() {
+        binding.signIn.setOnClickListener {
+            val direction = SignUpFragmentDirections.actionSignUpFragmentToSignInFragment()
+            findNavController().navigate(direction)
+        }
     }
 
     private fun observePasswordErrorMessage() {
@@ -118,15 +129,35 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         with(binding) {
             buttonSignUp.setOnClickListener {
                 clearFocuses()
-                if (isFieldsValid()) {
-                    val eMail = eMailField.text.toString()
-                    val password = passwordField.text.toString()
-                    val isCheckedCheckBox = checkBox.isChecked
-                    viewModel.saveLoginData(eMail, password, isCheckedCheckBox)
-                    val intent =
-                        Intent(requireContext(), ContactActivity::class.java)
-                    startActivity(intent)
+//                if (isFieldsValid()) {
+//                    val eMail = eMailField.text.toString()
+//                    val password = passwordField.text.toString()
+//                    val isCheckedCheckBox = checkBox.isChecked
+//                    viewModel.saveLoginData(eMail, password, isCheckedCheckBox)
+                viewModel.authorizeUser("test5@email", "123")
+
+
+                val intent =
+                    Intent(requireContext(), ContactActivity::class.java)
+                lifecycleScope.launch {
+                    repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+                        viewModel.user.collect {
+                            Log.d("aaaa", "$it")
+                            if (it != null) {
+
+
+                                Log.d("aaaa", "$it")
+                                intent.putExtra("LOGIN_DATA", it)
+                                startActivity(intent)
+
+                            }
+                        }
+                    }
                 }
+
+
+//                }
             }
         }
     }
