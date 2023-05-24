@@ -125,12 +125,12 @@
 
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/signIn"
+        android:id="@+id/signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:text="@string/sign_in"
+        android:text="@string/sign_up"
         android:textAppearance="@style/Text.Secondary"
         android:textSize="@dimen/titleSmall"
         android:textColor="@color/clickable_text_color"
@@ -143,7 +143,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/marginMid"
         android:layout_marginBottom="@dimen/marginMid"
-        app:constraint_referenced_ids="have_account, signIn"
+        app:constraint_referenced_ids="have_account, signUp"
         app:flow_horizontalGap="@dimen/marginMid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

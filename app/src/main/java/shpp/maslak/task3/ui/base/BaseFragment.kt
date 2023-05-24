@@ -21,8 +21,11 @@ abstract class BaseFragment<VBinding : ViewBinding>(
         savedInstanceState: Bundle?
     ): View? {
         _binding = inflaterMethod.invoke(inflater, container, false)
+
         return binding.root
     }
+
+
 
     override fun onDestroyView() {
         _binding = null

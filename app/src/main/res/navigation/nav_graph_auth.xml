@@ -11,6 +11,16 @@
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_signUpExtFragment"
+            app:destination="@id/signUpExtFragment">
+
+            <argument
+                android:name="user"
+                app:argType="shpp.maslak.task3.data.model.User"
+                app:nullable="false"/>
+        </action>
+
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -27,4 +37,14 @@
         android:id="@+id/signInFragment"
         android:name="shpp.maslak.task3.ui.fragments.auth.signIn.SignInFragment"
         android:label="SignInFragment" />
+    <fragment
+        android:id="@+id/signUpExtFragment"
+        android:name="shpp.maslak.task3.ui.fragments.auth.signUp.ext.SignUpExtFragment"
+        android:label="SignUpExtFragment">
+        <argument
+            android:name="user"
+            app:argType="shpp.maslak.task3.data.model.User"
+            app:nullable="false"/>
+    </fragment>
+
 </navigation>

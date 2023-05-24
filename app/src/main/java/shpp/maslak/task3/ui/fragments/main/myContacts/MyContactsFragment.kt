@@ -54,7 +54,7 @@ class MyContactsFragment :
     }
 
 
-     private fun setListeners() {
+     private  fun setListeners() {
         onSelectedContactDeleteListener()
         listenSwipe()
 
