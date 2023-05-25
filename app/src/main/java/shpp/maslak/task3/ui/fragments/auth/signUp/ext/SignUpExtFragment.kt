@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 
 import androidx.fragment.app.viewModels
@@ -29,13 +30,11 @@ class SignUpExtFragment :
 //    private val args by navArgs<SignUpExtFragmentArgs>()
 
     private val requestImageLauncher =
-        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
             Log.d("myUritag", "uri in fragment" )
             Log.d("myUritag", "uri in fragment $uri")
              viewModel.setPhoto(uri!!)
         }
-
-    private var avatarObserver: Observer<Any>? = null
 
 
     override fun onCreateView(
@@ -64,13 +63,7 @@ class SignUpExtFragment :
 
     }
 
-    private fun setAvatarObserver() = with(viewModel.currentUserPhotoUri) {
-        avatarObserver = Observer<Any> {
-            value?.let {
-                binding.imageViewAddPhoto.setContactPhoto(value!!)
-            }
-        }
-    }
+
 
     private fun addPhotoListener() {
         binding.imageViewAddPhoto.setOnClickListener {
@@ -80,7 +73,7 @@ class SignUpExtFragment :
 
     private fun addPhotoFromGallery() {
         Log.d("myUritag", "start")
-        requestImageLauncher.launch("image/*")
+        requestImageLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 
 
@@ -90,7 +83,7 @@ class SignUpExtFragment :
         observeUserName()
         observeUserPhone()
         observeUserPhoto()
-//        setAvatarObserver()
+
 
     }
 
@@ -175,6 +168,11 @@ class SignUpExtFragment :
     override fun onResume() {
         super.onResume()
         Log.d("myUritag", "resume" )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d("myUritag", "destroy" )
     }
 
 }
