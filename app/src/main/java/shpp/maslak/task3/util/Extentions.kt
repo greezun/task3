@@ -1,5 +1,6 @@
 package shpp.maslak.task3.util
 
+import android.net.Uri
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
@@ -19,9 +20,9 @@ val GLIDE_OPTIONS = RequestOptions()
     .priority(Priority.HIGH)
 
 
-fun AppCompatImageView.setContactPhoto(contactPhotoUrl: String) {
+fun AppCompatImageView.setContactPhoto(contactPhotoUri: Uri?) {
     Glide.with(context)
-        .load(contactPhotoUrl)
+        .load(contactPhotoUri)
         .apply(GLIDE_OPTIONS)
         .into(this)
 }

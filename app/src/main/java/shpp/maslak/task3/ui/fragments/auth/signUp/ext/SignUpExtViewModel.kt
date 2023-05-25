@@ -1,5 +1,7 @@
 package shpp.maslak.task3.ui.fragments.auth.signUp.ext
 
+import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,6 +15,9 @@ class SignUpExtViewModel @Inject constructor():ViewModel() {
 
     private var _currentUser = MutableStateFlow<User?>(null)
     val currentUser = _currentUser.asStateFlow()
+
+    private var _currentUserPhotoUri = MutableStateFlow<Uri?>(null)
+    val currentUserPhotoUri = _currentUserPhotoUri.asStateFlow()
 
     private var _currentUserName = MutableStateFlow("")
     val currentUserName = _currentUserName.asStateFlow()
@@ -33,8 +38,9 @@ class SignUpExtViewModel @Inject constructor():ViewModel() {
         _currentUser.value?.phone = number
     }
 
-    fun setPhoto(){
-        TODO()
+    fun setPhoto(uri:Uri){
+       _currentUserPhotoUri.value = uri
+        Log.d("uri", "uri $uri")
     }
 
 }

@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +21,7 @@ import shpp.maslak.task3.ui.base.BaseFragment
 class MyProfileFragment: BaseFragment<FragmentMyProfileBinding>(FragmentMyProfileBinding::inflate) {
 
     private val viewModel: MyProfileViewModel by viewModels()
+
 
 
 

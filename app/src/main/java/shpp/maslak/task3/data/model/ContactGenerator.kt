@@ -19,7 +19,7 @@ class ContactGenerator {
 
         return Contact(
             id = id,
-            avatar = IMAGES[id.rem(IMAGES.size).toInt()],
+            avatar = null,
             userName = faker.name().fullName(),
             address = faker.address().fullAddress(),
             career = faker.artist().name()
