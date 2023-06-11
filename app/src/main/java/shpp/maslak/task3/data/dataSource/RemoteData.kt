@@ -13,8 +13,6 @@ class RemoteDataSource @Inject constructor(
     suspend fun authorizeUser(email: String, password: String): UserResponseBody? {
 
         return try {
-            Log.d("RemoteData", "email: $email")
-            Log.d("RemoteData", "password: $password")
             val request = NewUserRequest(
                 email,
                 password
@@ -22,19 +20,15 @@ class RemoteDataSource @Inject constructor(
             val serverResponse = contactApi.authorizeUser(request)
 
             if (serverResponse.isSuccessful && serverResponse.body() != null) {
-                Log.d("RemoteData", "serverResponse.body(): ${serverResponse.body()}")
                 serverResponse.body()?.data
 
-
             } else {
-                Log.d("RemoteData", "serverResponse.isSuccessful: ${serverResponse.isSuccessful}")
-                Log.d("RemoteData", "serverResponse.body(): ${serverResponse.body()}")
 
-                null//                UserResponse()
+                null
             }
 
         } catch (ex: Exception) {
-            Log.d("RemoteData", "ex: ${ex.message}")
+
             null
         }
         // todo handle the internet exception
@@ -51,8 +45,7 @@ class RemoteDataSource @Inject constructor(
     suspend fun createNewUser(email: String, password: String): UserResponseBody? {
 
         return try {
-            Log.d("RemoteData", "email: $email")
-            Log.d("RemoteData", "password: $password")
+
             val request = NewUserRequest(
                 email,
                 password
@@ -60,19 +53,17 @@ class RemoteDataSource @Inject constructor(
             val serverResponse = contactApi.createNewUser(request)
 
             if (serverResponse.isSuccessful && serverResponse.body() != null) {
-                Log.d("RemoteData", "serverResponse.body(): ${serverResponse.body()}")
+
                 serverResponse.body()?.data
 
 
             } else {
-                Log.d("RemoteData", "serverResponse.isSuccessful: ${serverResponse.isSuccessful}")
-                Log.d("RemoteData", "serverResponse.body(): ${serverResponse.body()}")
 
-                null//                UserResponse()
+                null
             }
 
         } catch (ex: Exception) {
-            Log.d("RemoteData", "ex: ${ex.message}")
+
             null
         }
         // todo handle the internet exception

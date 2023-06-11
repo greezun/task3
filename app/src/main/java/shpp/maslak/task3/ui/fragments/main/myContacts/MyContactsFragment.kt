@@ -81,10 +81,6 @@ class MyContactsFragment :
             buttonDelete = ivBasketMultiselect
             recyclerView.layoutManager = manager
             recyclerView.adapter = adapter
-
-
-
-
         }
     }
 
@@ -113,7 +109,6 @@ class MyContactsFragment :
                 )
             }
         }
-
     }
 
 

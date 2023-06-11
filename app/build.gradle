@@ -6,9 +6,6 @@ plugins {
     id("com.google.dagger.hilt.android")
     id 'kotlin-parcelize'
 
-
-
-
 }
 
 android {

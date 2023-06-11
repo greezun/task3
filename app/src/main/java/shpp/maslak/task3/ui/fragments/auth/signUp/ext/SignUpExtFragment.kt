@@ -27,7 +27,7 @@ class SignUpExtFragment :
     BaseFragment<FragmentSignUpExtBinding>(FragmentSignUpExtBinding::inflate) {
 
     private val viewModel by viewModels<SignUpExtViewModel>()
-//    private val args by navArgs<SignUpExtFragmentArgs>()
+    private val args by navArgs<SignUpExtFragmentArgs>()
 
     private val requestImageLauncher =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
@@ -42,9 +42,9 @@ class SignUpExtFragment :
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        val currentUser = args.user
-//        Log.d("singUp", "user $currentUser")
-//        viewModel.initUser(currentUser)
+        val currentUser = args.user
+        Log.d("singUp", "user $currentUser")
+        viewModel.initUser(currentUser)
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
