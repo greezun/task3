@@ -6,24 +6,6 @@
     app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/signUpFragment"
-        android:name="shpp.maslak.task3.ui.fragments.auth.signUp.SignUpFragment"
-        android:label="SignUpFragment">
-        <action
-            android:id="@+id/action_signUpFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
-        <action
-            android:id="@+id/action_signUpFragment_to_signUpExtFragment"
-            app:destination="@id/signUpExtFragment">
-
-            <argument
-                android:name="user"
-                app:argType="shpp.maslak.task3.data.model.User"
-                app:nullable="false" />
-        </action>
-
-    </fragment>
-    <fragment
         android:id="@+id/splashFragment"
         android:name="shpp.maslak.task3.ui.fragments.auth.splash.SplashFragment"
         android:label="SplashFragment">
@@ -33,6 +15,20 @@
             app:popUpTo="@+id/splashFragment"
             app:popUpToInclusive="true" />
     </fragment>
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="shpp.maslak.task3.ui.fragments.auth.signUp.SignUpFragment"
+        android:label="SignUpFragment">
+        <action
+            android:id="@+id/action_signUpFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_signUpExtFragment"
+            app:destination="@id/signUpExtFragment">
+        </action>
+    </fragment>
+
     <fragment
         android:id="@+id/signInFragment"
         android:name="shpp.maslak.task3.ui.fragments.auth.signIn.SignInFragment"
@@ -40,31 +36,20 @@
         <action
             android:id="@+id/action_signInFragment_to_contactActivity"
             app:destination="@id/contactActivity">
-            <argument
-                android:name="user"
-                app:argType="shpp.maslak.task3.data.model.User"
-                app:nullable="false" />
-
         </action>
     </fragment>
+
     <fragment
         android:id="@+id/signUpExtFragment"
         android:name="shpp.maslak.task3.ui.fragments.auth.signUp.ext.SignUpExtFragment"
         android:label="SignUpExtFragment">
-        <argument
-            android:name="user"
-            app:argType="shpp.maslak.task3.data.model.User"
-            app:nullable="false" />
     </fragment>
+
     <activity
         android:id="@+id/contactActivity"
         android:name="shpp.maslak.task3.ui.activities.ContactActivity"
         android:label="activity_contact"
         tools:layout="@layout/activity_contact">
-    <argument
-        android:name="user"
-        app:argType="shpp.maslak.task3.data.model.User"
-        app:nullable="false" />
     </activity>
 
 </navigation>

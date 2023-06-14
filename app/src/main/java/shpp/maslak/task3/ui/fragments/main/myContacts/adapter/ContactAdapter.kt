@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import shpp.maslak.task3.databinding.ItemContactBinding
 import shpp.maslak.task3.data.model.Contact
+
 import shpp.maslak.task3.ui.fragments.main.myContacts.adapter.actionListener.ContactActionListener
 import shpp.maslak.task3.ui.fragments.main.myContacts.adapter.diffUtill.DiffUtilCallback
 

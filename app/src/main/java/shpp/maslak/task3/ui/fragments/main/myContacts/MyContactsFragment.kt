@@ -1,5 +1,6 @@
 package shpp.maslak.task3.ui.fragments.main.myContacts
 
+
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
@@ -17,16 +18,14 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.R
+import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.databinding.FragmentMyContactsBinding
 import shpp.maslak.task3.ui.base.BaseFragment
-import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.ui.activities.ContactActivity
-
-import shpp.maslak.task3.ui.fragments.main.myContacts.adapter.actionListener.ContactActionListener
 import shpp.maslak.task3.ui.fragments.main.myContacts.adapter.ContactAdapter
-
+import shpp.maslak.task3.ui.fragments.main.myContacts.adapter.actionListener.ContactActionListener
+import shpp.maslak.task3.ui.fragments.main.pagerFragment.FragmentPagerDirections
 import shpp.maslak.task3.util.Constants
-
 
 
 @AndroidEntryPoint
@@ -50,14 +49,23 @@ class MyContactsFragment :
 
     override fun onResume() {
         super.onResume()
-        (activity as ContactActivity).supportActionBar?.title = getString(R.string.title_my_contacts)
+        (activity as ContactActivity).supportActionBar?.title =
+            getString(R.string.title_my_contacts)
     }
 
 
-     private  fun setListeners() {
+    private fun setListeners() {
         onSelectedContactDeleteListener()
         listenSwipe()
+        addContactTextViewListener()
 
+    }
+
+    private fun addContactTextViewListener() {
+        binding.tvAddContact.setOnClickListener {
+            val direction = FragmentPagerDirections.actionFragmentPagerToAddContactsFragment()
+            findNavController().navigate(direction)
+        }
     }
 
     private fun listenSwipe() {
@@ -177,5 +185,3 @@ class MyContactsFragment :
             .show()
     }
 }
-
-

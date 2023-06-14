@@ -1,6 +1,7 @@
 package shpp.maslak.task3.domain.repository
 
-import shpp.maslak.task3.data.model.User
+
+import shpp.maslak.task3.data.source.responses.GetAllUsersResponseBody
 import shpp.maslak.task3.data.source.responses.UserResponseBody
 
 interface UserRepository {
@@ -9,5 +10,7 @@ interface UserRepository {
 
     suspend fun createNewUser(email: String, password: String): UserResponseBody?
 
-    suspend fun getUser(userId:Long, accessToken:String): User?
+    suspend fun getUser(userId:Int, accessToken:String): UserResponseBody?
+
+    suspend fun getAllUsers(accessToken:String): GetAllUsersResponseBody?
 }

@@ -1,12 +1,15 @@
 package shpp.maslak.task3.ui.fragments.main.pagerFragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
+
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import shpp.maslak.task3.databinding.FragmentPagerBinding
+
 
 import shpp.maslak.task3.ui.base.BaseFragment
 import shpp.maslak.task3.ui.fragments.main.myContacts.MyContactsFragment
@@ -17,6 +20,7 @@ import shpp.maslak.task3.util.Constants
 @AndroidEntryPoint
 class FragmentPager
     : BaseFragment<FragmentPagerBinding>(FragmentPagerBinding::inflate) {
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,6 +35,7 @@ class FragmentPager
             }
         }.attach()
 
+        Log.d("myLog", "pager started")
 
     }
 

@@ -22,6 +22,9 @@
                 app:argType="long"
                 app:nullable="false" />
         </action>
+        <action
+            android:id="@+id/action_fragmentMyContacts_to_addContactsFragment"
+            app:destination="@id/addContactsFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragmentContactDetail"
@@ -40,7 +43,7 @@
         android:label="FragmentMyProfile"
         tools:layout="@layout/fragment_my_profile">
         <argument
-            android:name="user"
+            android:name="currentUser"
             app:argType="shpp.maslak.task3.data.model.User"
             app:nullable="false" />
 
@@ -48,8 +51,25 @@
     <fragment
         android:id="@+id/fragmentPager"
         android:name="shpp.maslak.task3.ui.fragments.main.pagerFragment.FragmentPager"
-        android:label="FragmentPager" />
+        android:label="FragmentPager" >
+        <action
+            android:id="@+id/action_fragmentPager_to_addContactsFragment"
+            app:destination="@id/addContactsFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_fragmentContactDetail"
         app:destination="@id/fragmentContactDetail" />
+
+    <activity
+        android:id="@+id/contactActivity"
+        android:name="shpp.maslak.task3.ui.activities.ContactActivity"
+        android:label="activity_contact"
+        tools:layout="@layout/activity_contact">
+
+    </activity>
+    <fragment
+        android:id="@+id/addContactsFragment"
+        android:name="shpp.maslak.task3.ui.fragments.main.addContacts.AddContactsFragment"
+        android:label="fragment_add_contacts"
+        tools:layout="@layout/fragment_add_contacts" />
 </navigation>

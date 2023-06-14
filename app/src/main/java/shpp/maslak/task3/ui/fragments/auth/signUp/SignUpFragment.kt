@@ -139,20 +139,20 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
                 viewModel.authorizeUser("test5@email", "123")
 
 
-                lifecycleScope.launch {
-                    repeatOnLifecycle(Lifecycle.State.STARTED) {
-
-                        viewModel.user.collect {
-                            Log.d("aaaa", "$it")
-                            if (it != null) {
-
-                                val direction = SignUpFragmentDirections.actionSignUpFragmentToSignUpExtFragment(it)
-                                findNavController().navigate(direction)
-
-                            }
-                        }
-                    }
-                }
+//                lifecycleScope.launch {
+//                    repeatOnLifecycle(Lifecycle.State.STARTED) {
+//
+//                        viewModel.user.collect {
+//                            Log.d("aaaa", "$it")
+//                            if (it != null) {
+//
+//                                val direction = SignUpFragmentDirections.actionSignUpFragmentToSignUpExtFragment(it)
+//                                findNavController().navigate(direction)
+//
+//                            }
+//                        }
+//                    }
+//                }
 
 
 //                }

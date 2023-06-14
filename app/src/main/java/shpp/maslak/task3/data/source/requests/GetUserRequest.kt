@@ -1,4 +1,5 @@
 package shpp.maslak.task3.data.source.requests
 
-class GetUserRequest {
-}
+data class GetUserRequest (
+    val accessToken:String
+)

@@ -3,7 +3,6 @@ package shpp.maslak.task3.data.source
 
 import retrofit2.Response
 import retrofit2.http.*
-import shpp.maslak.task3.data.model.User
 import shpp.maslak.task3.data.source.requests.AddContactRequest
 import shpp.maslak.task3.data.source.requests.AuthorizeUserRequest
 import shpp.maslak.task3.data.source.requests.EditUserRequest
@@ -28,7 +27,7 @@ interface ContactApi {
     suspend fun refreshToken(@Header("RefreshToken") accessToken: String): RefreshTokenResponse
 
     @GET("users/{userId}")
-    suspend fun getUser(@Header("Authorization") accessToken: String): GetUserResponse
+    suspend fun getUser(@Header("Authorization") accessToken: String,  @Path("userId") userId: Int): Response<UserResponse>
 
     @PUT("users/{userId}")
     suspend fun editUser(
@@ -39,7 +38,7 @@ interface ContactApi {
 
 
     @GET("users")
-    suspend fun getAllUsers(@Header("Authorization") accessToken: String): GetAllUsersResponse
+    suspend fun getAllUsers(@Header("Authorization") accessToken: String): Response<GetAllUsersResponse>
 
 
     @PUT("users/{contactId}/contacts")

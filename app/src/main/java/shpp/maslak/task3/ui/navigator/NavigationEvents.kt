@@ -6,6 +6,6 @@ import shpp.maslak.task3.data.model.User
 
 sealed class NavigationEvents {
 
-    data class ToNextFragment (val args:Any?):NavigationEvents()
+    object ToNextFragment:NavigationEvents()
     object ShowToast:NavigationEvents()
 }
