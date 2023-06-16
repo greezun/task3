@@ -1,4 +1,3 @@
 package shpp.maslak.task3.data.source.requests
 
-class AddContactRequest {
-}
+data class AddContactRequest (val contactId:Int)

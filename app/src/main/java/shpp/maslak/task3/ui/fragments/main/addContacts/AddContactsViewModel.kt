@@ -1,18 +1,15 @@
 package shpp.maslak.task3.ui.fragments.main.addContacts
 
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.data.LoginDataStore
-import shpp.maslak.task3.data.model.Contact
 import shpp.maslak.task3.data.model.User
 import shpp.maslak.task3.domain.repository.UserRepository
 import javax.inject.Inject
@@ -24,20 +21,22 @@ class AddContactsViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
+    private lateinit var accessToken: String
+    private var userId = 0
 
     private var _contactList = MutableStateFlow<List<User>>(emptyList())
     val contactState = _contactList
 
-    private var _selectedContactsList = MutableStateFlow<List<Contact>>(emptyList())
-    val  multiselectMode: StateFlow<List<Contact>> = _selectedContactsList
-
     init {
         viewModelScope.launch {
-            val  accessToken = async {  getAccessToken()}.await()
-
+            accessToken = async { getAccessToken() }.await()
+            userId = async { getUserId() }.await()
             getAllUsers(accessToken)
         }
+    }
 
+    private suspend fun getUserId(): Int {
+        return dataStore.userIdFlow.first()
     }
 
 
@@ -46,17 +45,26 @@ class AddContactsViewModel @Inject constructor(
             val response = userRepository.getAllUsers(accessToken)
             if (response != null) {
                 val allUsersList = response.users
-               _contactList.value = allUsersList
-                Log.d("myTag", "users list ${allUsersList.toString()}")
+                _contactList.value = allUsersList
 
             }
         }
     }
 
-    private suspend fun getAccessToken(): String{
+    private suspend fun getAccessToken(): String {
         return dataStore.accessTokenFlow.first()
     }
 
 
+    fun addContact(contact: User) {
+        viewModelScope.launch(Dispatchers.IO) {
+           userRepository.addContact(userId, contact.id,accessToken )
+//            if (response != null) {
+//                val contactList = response.contacts
+//                _contactList.value = contactList
+
+//            }
+        }
+    }
 
 }

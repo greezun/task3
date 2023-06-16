@@ -3,7 +3,10 @@ package shpp.maslak.task3.ui.fragments.main.myContacts
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.viewModels
@@ -19,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import shpp.maslak.task3.R
 import shpp.maslak.task3.data.model.Contact
+import shpp.maslak.task3.data.model.User
 import shpp.maslak.task3.databinding.FragmentMyContactsBinding
 import shpp.maslak.task3.ui.base.BaseFragment
 import shpp.maslak.task3.ui.activities.ContactActivity
@@ -44,11 +48,13 @@ class MyContactsFragment :
         setObservers()
         setListeners()
 
-
     }
+
+
 
     override fun onResume() {
         super.onResume()
+        contactViewModel.getUserContacts()
         (activity as ContactActivity).supportActionBar?.title =
             getString(R.string.title_my_contacts)
     }
@@ -104,7 +110,7 @@ class MyContactsFragment :
                 val index = viewHolder.adapterPosition
                 val contact = contactViewModel.getContact(index)
                 contactViewModel.deleteContact(contact)
-                showDeleteMessage(index, contact)
+                showDeleteMessage( contact)
             }
 
             override fun getSwipeDirs(
@@ -129,6 +135,8 @@ class MyContactsFragment :
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 contactViewModel.contactState.collect { list ->
+                    Log.d("myLog", "my contacts list $list")
+
                     adapter.submitList(list)
                 }
             }
@@ -152,15 +160,14 @@ class MyContactsFragment :
     private fun createAdapter(): ContactAdapter {
         return ContactAdapter(contactActionListener = object : ContactActionListener {
             override fun onDelete(contact: Contact) {
-                val index = contactViewModel.getIndex(contact)
+
                 contactViewModel.deleteContact(contact)
-                showDeleteMessage(index, contact)
+                showDeleteMessage( contact)
             }
 
-            override fun onContactHolder(contact: Contact) {
-                val direction =
-                    MyContactsFragmentDirections.actionGlobalFragmentContactDetail(contact.id)
-                findNavController().navigate(direction)
+            override fun onContactHolder(contact: Contact){
+//                    MyContactsFragmentDirections.actionGlobalFragmentContactDetail(contact.id)
+//                findNavController().navigate(direction)
             }
 
             override fun onLongClick(contact: Contact) {
@@ -177,10 +184,10 @@ class MyContactsFragment :
         })
     }
 
-    private fun showDeleteMessage(index: Int, contact: Contact) {
+    private fun showDeleteMessage( contact: Contact) {
         Snackbar.make(binding.root, Constants.MESSAGE_DELETE, Snackbar.LENGTH_LONG)
             .setAction(Constants.SNACKBAR_ACTION_BUTTON_TEXT) {
-                contactViewModel.addContactOnIndex(index, contact)
+                contactViewModel.addContact( contact)
             }
             .show()
     }

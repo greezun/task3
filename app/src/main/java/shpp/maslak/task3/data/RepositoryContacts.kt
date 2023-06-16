@@ -1,18 +1,16 @@
 package shpp.maslak.task3.data
 
-
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import shpp.maslak.task3.data.model.Contact
-import shpp.maslak.task3.data.model.ContactGenerator
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RepositoryContacts @Inject constructor(): ContactManager {
+class RepositoryContacts @Inject constructor( ): ContactManager {
 
-    private var _contactList = MutableStateFlow(ContactGenerator().getContacts())
+    private var _contactList = MutableStateFlow<List<Contact>>(emptyList())
     private val contactList = _contactList.asStateFlow()
 
     override fun addContact(contact: Contact) {
@@ -42,5 +40,8 @@ class RepositoryContacts @Inject constructor(): ContactManager {
     }
 
     override fun getContactList():StateFlow<List<Contact>>  = contactList
+
+
+
 
 }

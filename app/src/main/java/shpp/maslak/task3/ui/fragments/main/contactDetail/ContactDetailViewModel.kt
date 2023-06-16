@@ -16,7 +16,7 @@ class ContactDetailViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    val contactsFlow: StateFlow<List<Contact>> = repositoryContacts.getContactList()
+
 
 
 

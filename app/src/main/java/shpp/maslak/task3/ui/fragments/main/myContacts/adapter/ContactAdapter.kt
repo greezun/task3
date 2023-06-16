@@ -9,11 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import shpp.maslak.task3.databinding.ItemContactBinding
 import shpp.maslak.task3.data.model.Contact
-
 import shpp.maslak.task3.ui.fragments.main.myContacts.adapter.actionListener.ContactActionListener
 import shpp.maslak.task3.ui.fragments.main.myContacts.adapter.diffUtill.DiffUtilCallback
-
-import shpp.maslak.task3.util.setContactPhoto
 
 
 class ContactAdapter(
@@ -52,14 +49,14 @@ class ContactAdapter(
                 }
                 basket.tag = contact
                 cvItemOfContact.tag = contact
-                textViewUserName.text = contact.userName
-                textViewCareer.text = contact.career
-                imageViewAvatar.setContactPhoto(contact.avatar)
+                textViewUserName.text = contact.email
+                textViewCareer.text = contact.id.toString()
+//                imageViewAvatar.setContactPhoto(contact.image)
             }
             setClickListeners(binding, contact)
         }
 
-        private fun setClickListeners(binding: ItemContactBinding, contact: Contact) {
+        private fun setClickListeners(binding: ItemContactBinding, contact:Contact) {
 
             with(binding){
                 if(!isMultiselectMode) {

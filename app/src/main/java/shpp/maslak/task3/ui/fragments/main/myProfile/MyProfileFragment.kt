@@ -38,9 +38,6 @@ class MyProfileFragment: BaseFragment<FragmentMyProfileBinding>(FragmentMyProfil
 
     }
 
-
-
-
     override fun onResume() {
         super.onResume()
         (activity as ContactActivity).supportActionBar?.title = getString(R.string.title_my_profile)

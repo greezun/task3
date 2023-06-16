@@ -50,10 +50,6 @@ class LoginData @Inject constructor( @ApplicationContext private val context: Co
         val AUTOLOGIN_KEY = booleanPreferencesKey(AUTOLOGIN)
     }
 
-
-
-
-
     }
 
 

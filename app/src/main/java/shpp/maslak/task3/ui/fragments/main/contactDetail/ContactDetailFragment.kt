@@ -24,23 +24,23 @@ class ContactDetailFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeContactList()
+//        observeContactList()
     }
 
-    private fun observeContactList() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.contactsFlow.collect { contacts ->
-                    val contact = contacts.firstOrNull {
-                        it.id == args.contactId
-                    }
-                    if (contact != null) {
-                        bindFields(contact)
-                    }
-                }
-            }
-        }
-    }
+//    private fun observeContactList() {
+//        lifecycleScope.launch {
+//            repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.contactsFlow.collect { contacts ->
+//                    val contact = contacts.firstOrNull {
+//                        it.id == args.contactId
+//                    }
+//                    if (contact != null) {
+//                        bindFields(contact)
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     private fun bindFields(contact: Contact) {
         with(binding) {

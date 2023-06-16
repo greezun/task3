@@ -4,6 +4,7 @@ package shpp.maslak.task3.data
 import kotlinx.coroutines.flow.StateFlow
 import shpp.maslak.task3.data.model.Contact
 
+
 interface ContactManager  {
 
     fun addContact (contact: Contact)

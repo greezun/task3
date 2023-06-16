@@ -41,23 +41,24 @@ interface ContactApi {
     suspend fun getAllUsers(@Header("Authorization") accessToken: String): Response<GetAllUsersResponse>
 
 
-    @PUT("users/{contactId}/contacts")
+    @PUT("users/{userId}/contacts")
     suspend fun addContact(
-        @Path("contactID") contactId: Int,
+        @Header("Authorization") accessToken: String,
+        @Path("userId") userId: Int,
         @Body body: AddContactRequest
-    ): AddContactResponse
+    ): Response<GetUserContactsResponse>
 
     @DELETE("users/{userId}/contacts/{contactId}")
     suspend fun deleteContact(
         @Header("Authorization") accessToken: String,
         @Path("userId") userId: Int,
         @Path("contactId") contactId: Int
-    ):GetUserContactsResponse
+    ):Response<GetUserContactsResponse>
 
     @GET("users/{contactId}/contacts")
     suspend fun getUserContacts(
         @Path("contactId") contactId: Int,
         @Header("Authorization") accessToken: String
-    ): GetUserContactsResponse
+    ): Response<GetUserContactsResponse>
 
 }
